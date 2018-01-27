@@ -151,6 +151,11 @@ public class GameContext : MonoBehaviour
 		for(int i = 0; i < m_characters.Count; ++i)
 		{
 			var character = m_characters [i];
+			float rollToChanceIdea = Random.Range (0.0f, 100.0f);
+			if (rollToChanceIdea < Config.Character.ChanceToChangeIdea) 
+			{
+				continue;
+			}
 
 			// Get characters in area
 			var othersAroundMe = GetOthersAroundCharacter(character);
@@ -166,6 +171,12 @@ public class GameContext : MonoBehaviour
 
 			// Push shape
 			character.PushShape(chosenShape);
+		}
+
+		for (int i = 0; i < m_playerCharacters.Count; ++i) 
+		{
+			m_playerCharacters [i].shapeCount1 = 0;
+			m_playerCharacters [i].shapeCount2 = 0;
 		}
 	}
 
@@ -199,10 +210,22 @@ public class GameContext : MonoBehaviour
 		for (int i = 0; i < characters.Count; ++i) 
 		{
 			Character character = characters[i];
-			var shapes = character.Shapes;
-			for (int j = 0; j < shapes.Count; ++j) 
+
+			if (character is PlayerCharacterController) 
 			{
-				shapeCount[(int)shapes[j]]++;
+				PlayerCharacterController pc = character as PlayerCharacterController;
+				var shapes = character.Shapes;
+
+				shapeCount [(int)shapes [0]] += pc.shapeCount1;
+				shapeCount [(int)shapes [1]] += pc.shapeCount2;
+			}
+			else
+			{
+				var shapes = character.Shapes;
+				for (int j = 0; j < shapes.Count; ++j) 
+				{
+					shapeCount [(int)shapes [j]]++;
+				}
 			}
 		}
 
