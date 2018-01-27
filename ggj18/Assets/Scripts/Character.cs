@@ -6,6 +6,9 @@ public class Character : MonoBehaviour
 {
 	public const int MAX_THOUGHTS = 2;
 
+	[SerializeField]
+	private ArriveUnit m_arrive;
+
 	// The thing in the first index will be the first to be removed (0 is the end)
 	private List<ShapeType> m_shapes = new List<ShapeType>(MAX_THOUGHTS);
 
@@ -31,8 +34,16 @@ public class Character : MonoBehaviour
 		GenerateRandomThoughts();
 	}
 
+	private void Start()
+	{
+		m_arrive.targetPosition = transform.position;
+	}
+
 	private void OnDrawGizmos()
 	{
+		if (!Application.isPlaying)
+			return;
+		
 		GameConfig config = GameContext.Get<GameConfig>();
 		if (config.Character.DrawCircles) 
 		{
@@ -88,4 +99,8 @@ public class Character : MonoBehaviour
 		}
 	}
 
+	public void MoveToTargetPosition(Vector3 position)
+	{
+		m_arrive.targetPosition = position;
+	}
 }
