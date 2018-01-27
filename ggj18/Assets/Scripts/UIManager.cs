@@ -12,10 +12,13 @@ public class UIManager : MonoBehaviour {
 	public GameObject countdownTextGameObject;
 	public GameObject mainmenuAnimationsGameObject;
 	public GameObject levelGameObject;
-	
+
+    public GameObject crossFaderObj;
+    private CrossFader crossFader;
 
 	// Use this for initialization
 	void Start () {
+        crossFader = crossFaderObj.GetComponent<CrossFader>();
 		Play() ;
 	}
 	
@@ -49,6 +52,12 @@ public class UIManager : MonoBehaviour {
 
 	void Countdown() //Countdown until 0
 	{
+        if(countdownFrom == 1)
+        {
+            //fade in
+            crossFader.CreateFade("Melody1", 0.0f, 1.0f);
+            crossFader.CreateFade("SFX", -2.5f, 1.0f);
+        }
 		if (--countdownFrom == 0) {
 			Invoke("ClearMainMenu",1f);
 			CancelInvoke("Countdown");
