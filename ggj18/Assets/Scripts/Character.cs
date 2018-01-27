@@ -15,9 +15,11 @@ public class Character : MonoBehaviour
 	private float m_hearingRadius;
 	private float m_talkingRadius;
 
+
 	public List<ShapeType> Shapes { get { return m_shapes; } }
 	public float HearingRadius { get{ return m_hearingRadius; } }
 	public float TalkingRadius { get{ return m_talkingRadius; } }
+	public int MissedMoveCount { get; set; }
 
 	private void Awake()
 	{

@@ -54,6 +54,7 @@ MonoBehaviour:
   Scene:
     NumCharacters: 20
   Character:
-    DrawCircles: 1
+    DrawCircles: 0
+    TimeBetweenConversing: 1
     HearingRadius: 2.25
     TalkingRaidus: 2.5

@@ -188,9 +188,21 @@ public class GameContext : MonoBehaviour
 		}
 
 		// Assign characters to groups
+		int movedCount = 0;
 		for (int i = 0; i < m_characters.Count; ++i) 
 		{
-			m_characters[i].MoveToTargetPosition(groupPositions[Random.Range(0, groups)]);
+			float scalingChance = m_characters [i].MissedMoveCount * 10.0f;
+			float chance = Config.Character.ChanceToLeaveConversation * 100 + scalingChance;
+			float roll = Random.Range(0.0f, 100.0f);
+			if (roll >= chance) 
+			{
+				m_characters [i].MoveToTargetPosition (groupPositions [Random.Range (0, groups)]);
+				++movedCount;
+				m_characters [i].MissedMoveCount = 0;
+			}
+
+			if (movedCount >= Config.Character.MaxCharactersMovingBetweenConversations)
+				break;
 		}
 	}
 

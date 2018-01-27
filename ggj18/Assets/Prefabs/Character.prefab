@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 114615633768241364}
   - component: {fileID: 114081101421822742}
   - component: {fileID: 114950564999905048}
-  - component: {fileID: 114082839214964994}
+  - component: {fileID: 114664253556964146}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -242,18 +242,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   facingCosine: 120
---- !u!114 &114082839214964994
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1782535027331204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7539df955e11c484f82490adfeef0660, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114146981783103938
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -276,7 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6d586e89afea48d7a869902f5d3b5d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_arrive: {fileID: 114082839214964994}
+  m_arrive: {fileID: 114664253556964146}
 --- !u!114 &114615633768241364
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -290,6 +278,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sepMaxAcceleration: 25
   maxSepDist: 5
+--- !u!114 &114664253556964146
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1782535027331204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7539df955e11c484f82490adfeef0660, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114764157834662244
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -301,8 +301,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b367b651c2e510041a2a4431b028bed2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cohesionWeight: 0.3
-  separationWeight: 0.5
+  cohesionWeight: 0.1
+  separationWeight: 1
   velocityMatchWeight: 0.1
   arriveWeight: 1
 --- !u!114 &114882615266598590
@@ -321,7 +321,7 @@ MonoBehaviour:
   targetRadius: 0.005
   slowRadius: 1
   timeToTarget: 0.1
-  turnSpeed: 20
+  turnSpeed: 100
   smoothing: 1
   numSamplesForSmoothing: 5
 --- !u!114 &114950564999905048
@@ -360,7 +360,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &212196350358505304
 SpriteRenderer:
