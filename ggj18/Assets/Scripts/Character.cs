@@ -10,7 +10,7 @@ public class Character : MonoBehaviour
 	private Arrive m_arrive;
 
 	// The thing in the first index will be the first to be removed (0 is the end)
-	private List<ShapeType> m_shapes = new List<ShapeType>(MAX_THOUGHTS);
+	protected List<ShapeType> m_shapes = new List<ShapeType>(MAX_THOUGHTS);
 
 	private float m_hearingRadius;
 	private float m_talkingRadius;
@@ -92,7 +92,7 @@ public class Character : MonoBehaviour
 		}
 	}
 
-	public void PushShape(ShapeType shape)
+	public virtual void PushShape(ShapeType shape)
 	{
 		// Only push if it doesn't already exist
 		if (!m_shapes.Contains(shape)) 

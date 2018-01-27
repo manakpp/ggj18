@@ -12,6 +12,8 @@ public class Metronome : MonoBehaviour {
     private int numBuff;
     private int buffSize;
 
+	public event System.Action TickEvent;
+
     private void Awake()
     {
         sampleRate = AudioSettings.outputSampleRate;
@@ -38,6 +40,8 @@ public class Metronome : MonoBehaviour {
     {
         //this is called on the closest frame to every metronome click.
         //Debug.Log("Metro tick");
+		if (TickEvent != null)
+			TickEvent.Invoke ();
     }
 
     private void Update()

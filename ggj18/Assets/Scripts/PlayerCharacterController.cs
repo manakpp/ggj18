@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCharacterController : Character 
 {
-	private ShapeType m_shapeType = ShapeType.None;
+	private List<ShapeType> m_assignedShapes = new List<ShapeType> ();
 	private int m_controllerIndex = 0;
 
 	protected override void Awake()
@@ -12,8 +12,10 @@ public class PlayerCharacterController : Character
 		base.Awake ();
 	}
 
-	public void InitialiseController(int controllerIndex)
+	public void InitialisePlayer(int controllerIndex, ShapeType type, ShapeType typeB)
 	{
+		m_assignedShapes.Add(type);
+		m_assignedShapes.Add(typeB);
 		m_controllerIndex = controllerIndex;
 	}
 
@@ -29,23 +31,11 @@ public class PlayerCharacterController : Character
 
 		if(device.GetButtonUp(MappedButton.Button1))
 		{
-			m_shapeType = ShapeType.Cross;
-			PushShape (m_shapeType);
+			ChangePlayerShapes (m_assignedShapes[0]);
 		}
 		else if(device.GetButtonUp(MappedButton.Button2))
 		{
-			m_shapeType = ShapeType.Circle;
-			PushShape (m_shapeType);
-		}
-		else if(device.GetButtonUp(MappedButton.Button3))
-		{
-			m_shapeType = ShapeType.Square;
-			PushShape (m_shapeType);
-		}
-		else if(device.GetButtonUp(MappedButton.Button4))
-		{
-			m_shapeType = ShapeType.Triangle;
-			PushShape (m_shapeType);
+			ChangePlayerShapes (m_assignedShapes[1]);
 		}
 
 		float moveX = device.GetAxis (MappedAxis.Horizontal);
@@ -72,6 +62,20 @@ public class PlayerCharacterController : Character
 			Rigidbody rb = GetComponent<Rigidbody>();
 			rb.velocity = Vector3.MoveTowards (rb.velocity, Vector3.zero, Time.deltaTime * deceleration);
 		}
+	}
+
+	public void ChangePlayerShapes(ShapeType shape)
+	{
+		// Only push if it doesn't already exist
+		if (!m_shapes.Contains(shape)) 
+		{
+			m_shapes.RemoveAt(0);
+			m_shapes.Add(shape);
+		}
+	}
+
+	public override void PushShape(ShapeType shape)
+	{
 	}
 
 	public override void MoveToTargetPosition(Vector3 position)

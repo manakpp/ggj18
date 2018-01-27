@@ -58,3 +58,5 @@ MonoBehaviour:
   m_config: {fileID: 114904253869225444, guid: dc1399297be52465f94e0439aeacf562, type: 2}
   m_inputManager: {fileID: 114020373937717274, guid: daffdedefe9c0436b8d9fe4304f92c11,
     type: 2}
+  m_metronome: {fileID: 114033521346781424, guid: 4c90d253f11e6d145bd4945bc6848b3f,
+    type: 2}

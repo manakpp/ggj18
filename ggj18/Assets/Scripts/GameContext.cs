@@ -32,6 +32,8 @@ public class GameContext : MonoBehaviour
 	[SerializeField]
 	private InputManager m_inputManager;
 
+	private Metronome m_metronome;
+
 	private List<Character> m_characters = new List<Character>();
 
 	private float m_timeElapsed = 0.0f;
@@ -68,6 +70,12 @@ public class GameContext : MonoBehaviour
 			character.transform.SetParent(charParent.transform, false);
 		}
 
+		List<ShapeType> randomShapes = new List<ShapeType> ();
+		randomShapes.Add (ShapeType.Circle);
+		randomShapes.Add (ShapeType.Cross);
+		randomShapes.Add (ShapeType.Square);
+		randomShapes.Add (ShapeType.Triangle);
+
 		numCharacters = 2;
 		for(int i = 0; i < numCharacters; ++i)
 		{
@@ -79,13 +87,22 @@ public class GameContext : MonoBehaviour
 			character.transform.position = new Vector3(x, y, 0.0f);
 
 			character.transform.SetParent(charParent.transform, false);
-			character.InitialiseController (i);
-		}
 
+			int randIndex = Random.Range (0, randomShapes.Count);
+			ShapeType randShapeA = randomShapes [randIndex];
+			randomShapes.RemoveAt (randIndex);
+			randIndex = Random.Range (0, randomShapes.Count);
+			ShapeType randShapeB = randomShapes [randIndex];
+			randomShapes.RemoveAt (randIndex);
+
+			character.InitialisePlayer (i, randShapeA, randShapeB);
+		}
+			
 		m_inputManager = GameObject.Instantiate<InputManager> (m_inputManager);
 		m_inputManager.transform.SetParent (this.transform);
 
-
+		m_metronome = FindObjectOfType<Metronome> ();
+		m_metronome.TickEvent += MetronomeTick;
 	}
 
 	private void Start()
@@ -93,17 +110,13 @@ public class GameContext : MonoBehaviour
 		m_timeBetweenConversing = Config.Character.TimeBetweenConversing;
 	}
 
+	private void OnDestroy()
+	{
+		m_metronome.TickEvent -= MetronomeTick;
+	}
+
 	private void Update()
 	{
-		// Iterate through all characters and tick
-		m_timeElapsed += Time.deltaTime;
-		if(m_timeElapsed >= m_timeBetweenConversing)
-		{
-			m_timeElapsed = 0.0f;
-
-			Converse();
-		}
-
 		m_mingleTimeElapsed += Time.deltaTime;
 		if (m_mingleTimeElapsed >= m_timeBetweenMingling) 
 		{
@@ -111,6 +124,11 @@ public class GameContext : MonoBehaviour
 
 			Mingle();
 		}
+	}
+
+	private void MetronomeTick()
+	{
+		Converse();
 	}
 
 	private void Converse()
