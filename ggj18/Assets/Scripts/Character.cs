@@ -15,6 +15,7 @@ public class Character : MonoBehaviour
 	private float m_hearingRadius;
 	private float m_talkingRadius;
 
+	public List<GameObject> m_avatars;
 
 	public List<ShapeType> Shapes { get { return m_shapes; } }
 	public float HearingRadius { get{ return m_hearingRadius; } }
@@ -23,6 +24,13 @@ public class Character : MonoBehaviour
 
 	protected virtual void Awake()
 	{
+		// Randomly select avatar
+		foreach (var a in m_avatars)
+		{
+			a.SetActive(false);
+		}
+		m_avatars[Random.Range(0, m_avatars.Count)].SetActive(true);
+
 		GameConfig config = GameContext.Instance.Config;
 		m_hearingRadius = config.Character.HearingRadius;
 		m_talkingRadius = config.Character.TalkingRaidus;
