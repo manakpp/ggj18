@@ -11,6 +11,9 @@ public class PlayerCharacterController : Character
 
 	public ShapeType PrimaryShape { get{ return m_assignedShapes [0]; }}
 
+	public int shapeCount1 = 0;
+	public int shapeCount2 = 0;
+
 	protected override void Awake()
 	{
 		base.Awake ();
@@ -20,6 +23,8 @@ public class PlayerCharacterController : Character
 	{
 		m_assignedShapes.Add(type);
 		m_assignedShapes.Add(typeB);
+		m_shapes [0] = type;
+		m_shapes [1] = typeB;
 		m_controllerIndex = controllerIndex;
 
 		m_playerPrefabs [controllerIndex].SetActive (true);
@@ -37,11 +42,11 @@ public class PlayerCharacterController : Character
 
 		if(device.GetButtonUp(MappedButton.Button1))
 		{
-			ChangePlayerShapes (m_assignedShapes[0]);
+			shapeCount1++;
 		}
 		else if(device.GetButtonUp(MappedButton.Button2))
 		{
-			ChangePlayerShapes (m_assignedShapes[1]);
+			shapeCount2++;
 		}
 
 		float moveX = device.GetAxis (MappedAxis.Horizontal);
