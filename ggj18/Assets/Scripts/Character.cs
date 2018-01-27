@@ -29,7 +29,8 @@ public class Character : MonoBehaviour
 		{
 			a.SetActive(false);
 		}
-		m_avatars[Random.Range(0, m_avatars.Count)].SetActive(true);
+		if(m_avatars != null && m_avatars.Count > 0)
+			m_avatars[Random.Range(0, m_avatars.Count)].SetActive(true);
 
 		GameConfig config = GameContext.Instance.Config;
 		m_hearingRadius = config.Character.HearingRadius;

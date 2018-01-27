@@ -7,6 +7,8 @@ public class PlayerCharacterController : Character
 	private List<ShapeType> m_assignedShapes = new List<ShapeType> ();
 	private int m_controllerIndex = 0;
 
+	public List<GameObject> m_playerPrefabs = new List<GameObject> ();
+
 	public ShapeType PrimaryShape { get{ return m_assignedShapes [0]; }}
 
 	protected override void Awake()
@@ -19,6 +21,8 @@ public class PlayerCharacterController : Character
 		m_assignedShapes.Add(type);
 		m_assignedShapes.Add(typeB);
 		m_controllerIndex = controllerIndex;
+
+		m_playerPrefabs [controllerIndex].SetActive (true);
 	}
 
 	protected override void Update()

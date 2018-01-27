@@ -831,8 +831,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_arrive: {fileID: 114664253556964146}
   m_avatars:
-  - {fileID: 1051840299117284}
-  - {fileID: 1323695175598424}
   - {fileID: 1302223393732090}
   - {fileID: 1386580126397820}
   - {fileID: 1027865884724616}
