@@ -19,6 +19,10 @@ public class GameConfig : MonoBehaviour
 		public float TalkingRaidus = 5.0f;
 		public float ChanceToLeaveConversation = 0.3f;
 		public int MaxCharactersMovingBetweenConversations = 10;
+
+		public float PlayerMaxVelocity = 10.0f;
+		public float PlayerAcceleration = 10.0f;
+		public float PlayerDeceleration = 10.0f;
 	}
 
 	public SceneConfig Scene;

@@ -58,3 +58,8 @@ MonoBehaviour:
     TimeBetweenConversing: 1
     HearingRadius: 2.25
     TalkingRaidus: 2.5
+    ChanceToLeaveConversation: 0.3
+    MaxCharactersMovingBetweenConversations: 10
+    PlayerMaxVelocity: 10
+    PlayerAcceleration: 10
+    PlayerDeceleration: 10

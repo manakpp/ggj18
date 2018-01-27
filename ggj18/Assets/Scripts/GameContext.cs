@@ -52,7 +52,7 @@ public class GameContext : MonoBehaviour
 		// Generate characters
 		GameObject charParent = new GameObject("Characters");
 
-		int numCharacters = 20;
+		int numCharacters = Config.Scene.NumCharacters;
 		for(int i = 0; i < numCharacters; ++i)
 		{
 			Character character = GameObject.Instantiate<Character>(m_characterPrefab);
@@ -60,7 +60,7 @@ public class GameContext : MonoBehaviour
 
 			float x = Random.Range(-5.0f, 5.0f);
 			float y = Random.Range(-5.0f, 5.0f);
-			character.transform.position = new Vector3(x, y, y);
+			character.transform.position = new Vector3(x, y, 0.0f);
 
 			character.transform.SetParent(charParent.transform, false);
 		}

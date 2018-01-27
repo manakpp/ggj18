@@ -7,6 +7,7 @@ public class FlockingUnit : MonoBehaviour
     public float separationWeight = 2f;
     public float velocityMatchWeight = 1f;
 	public float arriveWeight = 1f;
+	public float wallAvoidWeight = 2.0f;
 
     private SteeringBasics steeringBasics;
     private Wander2 wander;
@@ -14,6 +15,7 @@ public class FlockingUnit : MonoBehaviour
     private Separation separation;
     private VelocityMatch velocityMatch;
 	private Arrive arrive;
+	private WallAvoidance wallAvoid;
 
     private NearSensor sensor;
 
@@ -26,7 +28,7 @@ public class FlockingUnit : MonoBehaviour
         separation = GetComponent<Separation>();
         velocityMatch = GetComponent<VelocityMatch>();
 		arrive = GetComponent<Arrive>();
-
+		wallAvoid = GetComponent<WallAvoidance> ();
         sensor = transform.Find("Sensor").GetComponent<NearSensor>();
     }
 
@@ -43,6 +45,8 @@ public class FlockingUnit : MonoBehaviour
         	accel += velocityMatch.getSteering(sensor.targets) * velocityMatchWeight;
 		if(arrive !=null)
 			accel += arrive.getSteering() * arriveWeight;
+		if (wallAvoid != null)
+			accel += wallAvoid.getSteering () * wallAvoidWeight;
 		
         if (accel.magnitude < 0.005f)
         {

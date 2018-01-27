@@ -16,7 +16,7 @@ public class InputManager : MonoBehaviour
 	public GamepadDevice GetDevice(int index)
 	{
 		if (m_gamepadInput.gamepads == null ||
-		   index <= m_gamepadInput.gamepads.Count)
+		   index >= m_gamepadInput.gamepads.Count)
 			return null;
 
 		return m_gamepadInput.gamepads [index];
