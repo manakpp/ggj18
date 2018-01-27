@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Character : MonoBehaviour 
 {
+	[System.Serializable]
+	public struct ShapeImageMap
+	{
+		public ShapeType Type;
+		public Sprite ShapeSprite;
+	}
+
 	public const int MAX_THOUGHTS = 2;
 
 	[SerializeField]
@@ -15,6 +22,11 @@ public class Character : MonoBehaviour
 	private float m_hearingRadius;
 	private float m_talkingRadius;
 
+	public List<GameObject> m_avatars;
+	public List<ShapeImageMap> m_shapeImageMap;
+	public Dictionary<ShapeType, Sprite> m_shapeSpriteDict = new Dictionary<ShapeType, Sprite>();
+	public GameObject FirstIdea;
+	public GameObject SecondIdea;
 
 	public List<ShapeType> Shapes { get { return m_shapes; } }
 	public float HearingRadius { get{ return m_hearingRadius; } }
@@ -23,6 +35,19 @@ public class Character : MonoBehaviour
 
 	protected virtual void Awake()
 	{
+		foreach (var s in m_shapeImageMap)
+		{
+			m_shapeSpriteDict.Add(s.Type, s.ShapeSprite);
+		}
+
+		// Randomly select avatar
+		foreach (var a in m_avatars)
+		{
+			a.SetActive(false);
+		}
+		if(m_avatars != null && m_avatars.Count > 0)
+			m_avatars[Random.Range(0, m_avatars.Count)].SetActive(true);
+
 		GameConfig config = GameContext.Instance.Config;
 		m_hearingRadius = config.Character.HearingRadius;
 		m_talkingRadius = config.Character.TalkingRaidus;
@@ -57,11 +82,21 @@ public class Character : MonoBehaviour
 		}
 	}
 
+
+
 	protected virtual void Update()
 	{
+
 		// TODO: Replace with sprite UI stuff
 		// Update UI
 		ShapeType shape = m_shapes[0];
+
+		if (FirstIdea != null && SecondIdea != null)
+		{
+			FirstIdea.GetComponent<SpriteRenderer>().sprite = m_shapeSpriteDict[m_shapes[0]];
+			SecondIdea.GetComponent<SpriteRenderer>().sprite = m_shapeSpriteDict[m_shapes[1]];
+		}
+
 		switch (shape) 
 		{
 		case ShapeType.Square:
@@ -75,6 +110,18 @@ public class Character : MonoBehaviour
 			break;
 		case ShapeType.Circle:
 			GetComponentInChildren<SpriteRenderer> ().material.color = Color.red;
+			break;
+		case ShapeType.Square1:
+			GetComponentInChildren<SpriteRenderer> ().material.color = new Color (0.75f, 0.40f, 0.40f) * .5f;
+			break;
+		case ShapeType.Triangle1:
+			GetComponentInChildren<SpriteRenderer> ().material.color = Color.green * .5f;
+			break;
+		case ShapeType.Cross1:
+			GetComponentInChildren<SpriteRenderer> ().material.color = Color.blue * .5f;
+			break;
+		case ShapeType.Circle1:
+			GetComponentInChildren<SpriteRenderer> ().material.color = Color.red * .5f;
 			break;
 
 		case ShapeType.None: // Fall

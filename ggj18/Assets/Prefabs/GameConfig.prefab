@@ -55,6 +55,7 @@ MonoBehaviour:
     NumCharacters: 20
     BoundsX: 7.5
     BoundsY: 5
+    TimeLimit: 60
   Character:
     DrawCircles: 0
     TimeBetweenConversing: 1

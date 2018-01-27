@@ -89,7 +89,7 @@ public class SteeringBasics : MonoBehaviour {
 			direction /= velocitySamples.Count;
 		}
 
-		lookAtDirection (direction);
+//		lookAtDirection (direction);
 	}
 
 	public void lookAtDirection(Vector2 direction) {

@@ -35,6 +35,7 @@ public class GameContext : MonoBehaviour
 	private Metronome m_metronome;
 
 	private List<Character> m_characters = new List<Character>();
+	private List<PlayerCharacterController> m_playerCharacters = new List<PlayerCharacterController>();
 
 	private float m_timeElapsed = 0.0f;
 	private float m_timeBetweenConversing = 1.0f;
@@ -42,8 +43,13 @@ public class GameContext : MonoBehaviour
 	private float m_mingleTimeElapsed = 4.5f;
 	private float m_timeBetweenMingling = 5.0f;
 
+	private float m_timeSinceLevelStarted = 0.0f;
+
 	public GameConfig Config {get{return m_config; }}
 	public InputManager InputManager {get{return m_inputManager; }}
+	public float TimeLimit { get{ return m_config.Scene.TimeLimit; }}
+	public float TimeRemaining { get{ return Mathf.Max(0.0f, m_config.Scene.TimeLimit - m_timeSinceLevelStarted); }}
+	public float TimeRemainingRatio { get { return TimeRemaining / TimeLimit; }}
 
 	private void Awake()
 	{
@@ -81,6 +87,7 @@ public class GameContext : MonoBehaviour
 		{
 			PlayerCharacterController character = GameObject.Instantiate<PlayerCharacterController>(m_playerPrefab);
 			m_characters.Add(character);
+			m_playerCharacters.Add (character);
 
 			float x = Random.Range(-5.0f, 5.0f);
 			float y = Random.Range(-5.0f, 5.0f);
@@ -103,6 +110,8 @@ public class GameContext : MonoBehaviour
 
 		m_metronome = FindObjectOfType<Metronome> ();
 		m_metronome.TickEvent += MetronomeTick;
+
+
 	}
 
 	private void Start()
@@ -123,6 +132,12 @@ public class GameContext : MonoBehaviour
 			m_mingleTimeElapsed = 0.0f;
 
 			Mingle();
+		}
+
+		m_timeSinceLevelStarted += Time.deltaTime;
+		if (m_timeSinceLevelStarted >= Config.Scene.TimeLimit) 
+		{
+			// GameOver
 		}
 	}
 
@@ -258,5 +273,26 @@ public class GameContext : MonoBehaviour
 			list[k] = list[n];  
 			list[n] = value;  
 		}  
+	}
+
+	public float CalculateInfluenceRatio()
+	{
+		ShapeType a = m_playerCharacters [0].PrimaryShape;
+		ShapeType b = m_playerCharacters [1].PrimaryShape;
+
+		List<int> sumShapes = new List<int> ();
+		for (int i = 0; i < (int)ShapeType.MAX; ++i) {
+			sumShapes.Add (0);
+		}
+
+		for (int i = 0; i < m_characters.Count; ++i) {
+			sumShapes [(int)m_characters [i].Shapes [0]]++;
+			sumShapes [(int)m_characters [i].Shapes [1]]++;
+		}
+
+		int sum = sumShapes [(int)a] + sumShapes [(int)b];
+		float playerRatio = (float)sumShapes [(int)a] / (float)sum;
+
+		return playerRatio;
 	}
 }
