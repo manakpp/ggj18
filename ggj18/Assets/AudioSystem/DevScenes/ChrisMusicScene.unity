@@ -308,6 +308,12 @@ Prefab:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114834382157063424, guid: 4c90d253f11e6d145bd4945bc6848b3f,
+        type: 2}
+      propertyPath: masterMixer
+      value: 
+      objectReference: {fileID: 24100000, guid: b7101d1c65da9534689e630ffd422c57,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c90d253f11e6d145bd4945bc6848b3f, type: 2}
   m_IsPrefabParent: 0
