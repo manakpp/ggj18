@@ -85,6 +85,18 @@ public class Character : MonoBehaviour
 		case ShapeType.Circle:
 			GetComponentInChildren<SpriteRenderer> ().material.color = Color.red;
 			break;
+		case ShapeType.Square1:
+			GetComponentInChildren<SpriteRenderer> ().material.color = new Color (0.75f, 0.40f, 0.40f) * .5f;
+			break;
+		case ShapeType.Triangle1:
+			GetComponentInChildren<SpriteRenderer> ().material.color = Color.green * .5f;
+			break;
+		case ShapeType.Cross1:
+			GetComponentInChildren<SpriteRenderer> ().material.color = Color.blue * .5f;
+			break;
+		case ShapeType.Circle1:
+			GetComponentInChildren<SpriteRenderer> ().material.color = Color.red * .5f;
+			break;
 
 		case ShapeType.None: // Fall
 		case ShapeType.MAX: // Fall

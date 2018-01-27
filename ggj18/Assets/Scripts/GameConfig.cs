@@ -10,6 +10,8 @@ public class GameConfig : MonoBehaviour
 		public int NumCharacters = 20;
 		public float BoundsX = 20;
 		public float BoundsY = 15;
+
+		public int TimeLimit = 60;
 	}
 
 	[System.Serializable]

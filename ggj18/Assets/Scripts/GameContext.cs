@@ -43,8 +43,13 @@ public class GameContext : MonoBehaviour
 	private float m_mingleTimeElapsed = 4.5f;
 	private float m_timeBetweenMingling = 5.0f;
 
+	private float m_timeSinceLevelStarted = 0.0f;
+
 	public GameConfig Config {get{return m_config; }}
 	public InputManager InputManager {get{return m_inputManager; }}
+	public float TimeLimit { get{ return m_config.Scene.TimeLimit; }}
+	public float TimeRemaining { get{ return Mathf.Max(0.0f, m_config.Scene.TimeLimit - m_timeSinceLevelStarted); }}
+	public float TimeRemainingRatio { get { return TimeRemaining / TimeLimit; }}
 
 	private void Awake()
 	{
@@ -105,6 +110,8 @@ public class GameContext : MonoBehaviour
 
 		m_metronome = FindObjectOfType<Metronome> ();
 		m_metronome.TickEvent += MetronomeTick;
+
+
 	}
 
 	private void Start()
@@ -125,6 +132,12 @@ public class GameContext : MonoBehaviour
 			m_mingleTimeElapsed = 0.0f;
 
 			Mingle();
+		}
+
+		m_timeSinceLevelStarted += Time.deltaTime;
+		if (m_timeSinceLevelStarted >= Config.Scene.TimeLimit) 
+		{
+			// GameOver
 		}
 	}
 
