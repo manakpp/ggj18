@@ -54,6 +54,9 @@ public class GameContext : MonoBehaviour
 	private float m_timeElapsed = 0.0f;
 	private float m_timeBetweenConversing = 1.0f;
 
+	private float m_mingleTimeElapsed = 4.5f;
+	private float m_timeBetweenMingling = 5.0f;
+
 	private void Awake()
 	{
 		if (s_context != null && s_isInitialised)
@@ -94,6 +97,14 @@ public class GameContext : MonoBehaviour
 			m_timeElapsed = 0.0f;
 
 			Converse();
+		}
+
+		m_mingleTimeElapsed += Time.deltaTime;
+		if (m_mingleTimeElapsed >= m_timeBetweenMingling) 
+		{
+			m_mingleTimeElapsed = 0.0f;
+
+			Mingle();
 		}
 	}
 
@@ -177,5 +188,40 @@ public class GameContext : MonoBehaviour
 		}
 
 		return ShapeType.None;
+	}
+
+	private void Mingle()
+	{
+		int groups = Random.Range (5, 10);
+
+		Shuffle<Character>(m_characters);
+
+		List<Vector3> groupPositions = new List<Vector3>();
+		for (int i = 0; i < groups; ++i) 
+		{
+			float x = Random.Range(-5.0f, 5.0f);
+			float y = Random.Range(-5.0f, 5.0f);
+			groupPositions.Add(new Vector3(x, y, y));
+		}
+
+		// Assign characters to groups
+		for (int i = 0; i < m_characters.Count; ++i) 
+		{
+			m_characters[i].MoveToTargetPosition(groupPositions[Random.Range(0, groups)]);
+		}
+	}
+
+	public static void Shuffle<T>(IList<T> list) 
+	{  
+		System.Random rnd = new System.Random();
+		int n = list.Count;  
+		while (n > 1) 
+		{  
+			n--;  
+			int k = rnd.Next(n + 1);  
+			T value = list[k];  
+			list[k] = list[n];  
+			list[n] = value;  
+		}  
 	}
 }

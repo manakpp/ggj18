@@ -29,6 +29,6 @@ public class GameConfig : MonoBehaviour
 
 	private void OnDestroy()
 	{
-		GameContext.Remove(this);
+		//GameContext.Remove(this);
 	}
 }
