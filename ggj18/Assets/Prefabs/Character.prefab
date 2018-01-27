@@ -834,6 +834,25 @@ MonoBehaviour:
   - {fileID: 1302223393732090}
   - {fileID: 1386580126397820}
   - {fileID: 1027865884724616}
+  m_shapeImageMap:
+  - Type: 1
+    ShapeSprite: {fileID: 21300000, guid: 8e2fd0c42328083439cc75a0225ed5b1, type: 3}
+  - Type: 2
+    ShapeSprite: {fileID: 21300000, guid: d16bc290083d17e4780f0dd4829d84c4, type: 3}
+  - Type: 3
+    ShapeSprite: {fileID: 21300000, guid: 1d56e4e0b8e114f46ba7e2d1af1db366, type: 3}
+  - Type: 4
+    ShapeSprite: {fileID: 21300000, guid: 4a4e3135813c59b49bc6973592229b3f, type: 3}
+  - Type: 5
+    ShapeSprite: {fileID: 21300000, guid: 9d0d949f92449fe4ca13a58f65e154fa, type: 3}
+  - Type: 6
+    ShapeSprite: {fileID: 21300000, guid: f0107237dbaddb84ea6a97a258e5bcfb, type: 3}
+  - Type: 7
+    ShapeSprite: {fileID: 21300000, guid: 9b88b197e70f67d47a5f269c7cd1a78f, type: 3}
+  - Type: 8
+    ShapeSprite: {fileID: 21300000, guid: 7b28fbed761905745bb440696089e996, type: 3}
+  FirstIdea: {fileID: 1820408352750614}
+  SecondIdea: {fileID: 1201140988688988}
 --- !u!114 &114615633768241364
 MonoBehaviour:
   m_ObjectHideFlags: 1
