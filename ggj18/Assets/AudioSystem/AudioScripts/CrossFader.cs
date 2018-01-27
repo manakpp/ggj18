@@ -15,10 +15,10 @@ public class CrossFader : MonoBehaviour {
 	void Start() {
 		changingBools = new Dictionary<string, bool>();
 		changingBools.Add("Melody1", false);
-		changingBools.Add("Melody2", false);
+		changingBools.Add("SFX", false);
 		changingBools.Add("Background1", false);
-		changingBools.Add("Background2", false);
-	}
+
+    }
 
 	public void CreateFade(string loopName, float endValue, float length) {
 		if (changingBools.ContainsKey (loopName)) {
