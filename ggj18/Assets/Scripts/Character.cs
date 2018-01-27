@@ -7,7 +7,7 @@ public class Character : MonoBehaviour
 	public const int MAX_THOUGHTS = 2;
 
 	[SerializeField]
-	private ArriveUnit m_arrive;
+	private Arrive m_arrive;
 
 	// The thing in the first index will be the first to be removed (0 is the end)
 	private List<ShapeType> m_shapes = new List<ShapeType>(MAX_THOUGHTS);
@@ -21,7 +21,7 @@ public class Character : MonoBehaviour
 
 	private void Awake()
 	{
-		GameConfig config = GameContext.Get<GameConfig>();
+		GameConfig config = GameContext.Instance.Config;
 		m_hearingRadius = config.Character.HearingRadius;
 		m_talkingRadius = config.Character.TalkingRaidus;
 
@@ -44,7 +44,7 @@ public class Character : MonoBehaviour
 		if (!Application.isPlaying)
 			return;
 		
-		GameConfig config = GameContext.Get<GameConfig>();
+		GameConfig config = GameContext.Instance.Config;
 		if (config.Character.DrawCircles) 
 		{
 			Gizmos.color = Color.yellow;
@@ -104,3 +104,4 @@ public class Character : MonoBehaviour
 		m_arrive.targetPosition = position;
 	}
 }
+

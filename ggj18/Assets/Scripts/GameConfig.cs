@@ -21,14 +21,4 @@ public class GameConfig : MonoBehaviour
 
 	public SceneConfig Scene;
 	public CharacterConfig Character;
-
-	private void Awake()
-	{
-		GameContext.Add(this);
-	}
-
-	private void OnDestroy()
-	{
-		//GameContext.Remove(this);
-	}
 }
