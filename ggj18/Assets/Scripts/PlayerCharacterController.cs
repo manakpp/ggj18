@@ -7,6 +7,8 @@ public class PlayerCharacterController : Character
 	private List<ShapeType> m_assignedShapes = new List<ShapeType> ();
 	private int m_controllerIndex = 0;
 
+	public ShapeType PrimaryShape { get{ return m_assignedShapes [0]; }}
+
 	protected override void Awake()
 	{
 		base.Awake ();
