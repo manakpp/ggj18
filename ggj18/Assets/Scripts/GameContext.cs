@@ -80,6 +80,11 @@ public class GameContext : MonoBehaviour
 		}
 	}
 
+	private void Start()
+	{
+		m_timeBetweenConversing = Get<GameConfig>().Character.TimeBetweenConversing;
+	}
+
 	private void Update()
 	{
 		// Iterate through all characters and tick

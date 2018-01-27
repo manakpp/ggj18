@@ -14,6 +14,7 @@ public class GameConfig : MonoBehaviour
 	public class CharacterConfig
 	{
 		public bool DrawCircles = true;
+		public float TimeBetweenConversing = 1.0f;
 		public float HearingRadius = 5.0f;
 		public float TalkingRaidus = 5.0f;
 	}
