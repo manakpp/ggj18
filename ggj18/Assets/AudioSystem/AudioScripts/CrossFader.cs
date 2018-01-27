@@ -18,8 +18,6 @@ public class CrossFader : MonoBehaviour {
 		changingBools.Add("Melody2", false);
 		changingBools.Add("Background1", false);
 		changingBools.Add("Background2", false);
-
-        CreateFade("Melody1", -30, 1.0f);
 	}
 
 	public void CreateFade(string loopName, float endValue, float length) {
