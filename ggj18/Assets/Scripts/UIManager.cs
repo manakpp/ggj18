@@ -7,12 +7,15 @@ public class UIManager : MonoBehaviour {
 
 	public int countdownFrom;
 	public Text countdownText;
+	public GameObject panelMainMenuGameObject;
+	public GameObject planelGameOverGameObject;
 	public GameObject countdownTextGameObject;
+	public GameObject mainmenuAnimationsGameObject;
 	
 
 	// Use this for initialization
 	void Start () {
-		InvokeRepeating("Countdown", 1.0f, 1.0f);
+		Play() ;
 	}
 	
 	// Update is called once per frame
@@ -29,20 +32,27 @@ public class UIManager : MonoBehaviour {
 
 	void Play() { //Play
 		InvokeRepeating("Countdown", 1.0f, 1.0f);
-		if (countdownFrom <1)
-		{
+
+	}
+
+	void ClearMainMenu()
+	{
 			//move off screen player 1 animation
 			//move on screen player 2 animation
-			//remove countdown text
 			countdownTextGameObject.SetActive(false);
+			mainmenuAnimationsGameObject.SetActive(false);
 			//add player 1 to scene
 			//add player 2 to scene
 		}
-	}
 
 	void Countdown() //Countdown until 0
 	{
-			if (--countdownFrom == 0) CancelInvoke("Countdown");
-			countdownText.text = countdownFrom.ToString();
-		} 
-	}
+		if (--countdownFrom == 0) {
+			Invoke("ClearMainMenu",1f);
+			CancelInvoke("Countdown");
+		}	
+		countdownText.text = countdownFrom.ToString();
+	} 
+}
+
+

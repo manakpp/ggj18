@@ -2688,7 +2688,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   countdownFrom: 5
   countdownText: {fileID: 2082380640}
+  panelMainMenuGameObject: {fileID: 1026353860}
+  planelGameOverGameObject: {fileID: 1425592145}
   countdownTextGameObject: {fileID: 2082380638}
+  mainmenuAnimationsGameObject: {fileID: 885575884}
 --- !u!1 &1591018693
 GameObject:
   m_ObjectHideFlags: 0
