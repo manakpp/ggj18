@@ -47,3 +47,9 @@ TagManager:
   - name: Foreground
     uniqueID: 1919501985
     locked: 0
+  - name: NPC
+    uniqueID: 2162967893
+    locked: 0
+  - name: PC
+    uniqueID: 1552636427
+    locked: 0
