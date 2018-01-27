@@ -20,34 +20,14 @@ public class GameContext : MonoBehaviour
 	}
 	#endregion
 
-	#region context
-	private Dictionary<System.Type, MonoBehaviour> m_contextObjects = new Dictionary<System.Type, MonoBehaviour>();
-
-	public static T Get<T>() where T: MonoBehaviour
-	{
-		if (Instance.m_contextObjects.ContainsKey (typeof(T))) 
-		{
-			return (T)Instance.m_contextObjects[typeof(T)];
-		}
-		return null;
-	}
-
-	public static void Add(MonoBehaviour behaviour)
-	{
-		Instance.m_contextObjects[behaviour.GetType()] = behaviour;
-	}
-
-	public static void Remove(MonoBehaviour behaviour)
-	{
-		if (Instance.m_contextObjects.ContainsKey (behaviour.GetType ())) 
-		{
-			Instance.m_contextObjects.Remove (behaviour.GetType());
-		}
-	}
-	#endregion
-
 	[SerializeField]
 	private Character m_characterPrefab;
+
+	[SerializeField]
+	private GameConfig m_config;
+
+	[SerializeField]
+	private InputManager m_inputManager;
 
 	private List<Character> m_characters = new List<Character>();
 
@@ -56,6 +36,9 @@ public class GameContext : MonoBehaviour
 
 	private float m_mingleTimeElapsed = 4.5f;
 	private float m_timeBetweenMingling = 5.0f;
+
+	public GameConfig Config {get{return m_config; }}
+	public InputManager InputManager {get{return m_inputManager; }}
 
 	private void Awake()
 	{
@@ -85,7 +68,7 @@ public class GameContext : MonoBehaviour
 
 	private void Start()
 	{
-		m_timeBetweenConversing = Get<GameConfig>().Character.TimeBetweenConversing;
+		m_timeBetweenConversing = Config.Character.TimeBetweenConversing;
 	}
 
 	private void Update()
@@ -205,9 +188,21 @@ public class GameContext : MonoBehaviour
 		}
 
 		// Assign characters to groups
+		int movedCount = 0;
 		for (int i = 0; i < m_characters.Count; ++i) 
 		{
-			m_characters[i].MoveToTargetPosition(groupPositions[Random.Range(0, groups)]);
+			float scalingChance = m_characters [i].MissedMoveCount * 10.0f;
+			float chance = Config.Character.ChanceToLeaveConversation * 100 + scalingChance;
+			float roll = Random.Range(0.0f, 100.0f);
+			if (roll >= chance) 
+			{
+				m_characters [i].MoveToTargetPosition (groupPositions [Random.Range (0, groups)]);
+				++movedCount;
+				m_characters [i].MissedMoveCount = 0;
+			}
+
+			if (movedCount >= Config.Character.MaxCharactersMovingBetweenConversations)
+				break;
 		}
 	}
 

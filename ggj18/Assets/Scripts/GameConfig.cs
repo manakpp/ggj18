@@ -17,18 +17,10 @@ public class GameConfig : MonoBehaviour
 		public float TimeBetweenConversing = 1.0f;
 		public float HearingRadius = 5.0f;
 		public float TalkingRaidus = 5.0f;
+		public float ChanceToLeaveConversation = 0.3f;
+		public int MaxCharactersMovingBetweenConversations = 10;
 	}
 
 	public SceneConfig Scene;
 	public CharacterConfig Character;
-
-	private void Awake()
-	{
-		GameContext.Add(this);
-	}
-
-	private void OnDestroy()
-	{
-		//GameContext.Remove(this);
-	}
 }

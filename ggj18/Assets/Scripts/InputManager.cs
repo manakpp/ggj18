@@ -10,8 +10,6 @@ public class InputManager : MonoBehaviour
 
 	private void Awake()
 	{
-		GameContext.Add (this);	
-
 		m_gamepadInput = GetComponent<GamepadInput>();
 	}
 

@@ -15,7 +15,7 @@ public class PlayerInput : MonoBehaviour
 
 	private void Update()
 	{
-		GamepadDevice device = GameContext.Get<InputManager> ().GetDevice(m_playerIndex);
+		GamepadDevice device = GameContext.Instance.InputManager.GetDevice(m_playerIndex);
 		if (device == null)
 			return;
 
