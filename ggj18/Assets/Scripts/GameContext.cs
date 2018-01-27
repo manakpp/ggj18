@@ -79,6 +79,7 @@ public class GameContext : MonoBehaviour
 			character.transform.position = new Vector3(x, y, 0.0f);
 
 			character.transform.SetParent(charParent.transform, false);
+			character.InitialiseController (i);
 		}
 
 		m_inputManager = GameObject.Instantiate<InputManager> (m_inputManager);

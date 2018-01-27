@@ -53,6 +53,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Scene:
     NumCharacters: 20
+    BoundsX: 7.5
+    BoundsY: 5
   Character:
     DrawCircles: 0
     TimeBetweenConversing: 1

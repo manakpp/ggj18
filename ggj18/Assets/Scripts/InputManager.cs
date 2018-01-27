@@ -13,12 +13,40 @@ public class InputManager : MonoBehaviour
 		m_gamepadInput = GetComponent<GamepadInput>();
 	}
 
-	public GamepadDevice GetDevice(int index)
+	public GamepadInputDevice GetDevice(int index)
 	{
-		if (m_gamepadInput.gamepads == null ||
-		   index >= m_gamepadInput.gamepads.Count)
-			return null;
+		var devices = MappedInput.inputDevices;
 
-		return m_gamepadInput.gamepads [index];
+		// I think there is an issue with IDs when rebinded, do this incase of weird windows stuff
+		// If there are more than 2, first in list goes to player 1, second to player 2.
+		for (int i = 0; i < devices.Count; ++i) 
+		{
+			GamepadInputDevice device = devices [i] as GamepadInputDevice;
+			if (device != null) 
+			{
+				if (index == 0)
+					return device;
+				else
+					index--;
+			}
+		}
+
+		return null;
+	}
+
+	public KeyboardInputDevice GetKeyboard()
+	{
+		KeyboardInputDevice keyboard = null;
+		var devices = MappedInput.inputDevices;
+		for (int i = 0; i < devices.Count; ++i) 
+		{
+			if (devices [i] is KeyboardInputDevice) 
+			{
+				keyboard = devices [i] as KeyboardInputDevice;
+				return keyboard;
+			}
+		}
+
+		return null;
 	}
 }

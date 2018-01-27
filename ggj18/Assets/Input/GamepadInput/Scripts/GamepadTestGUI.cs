@@ -69,6 +69,37 @@ public class GamepadTestGUI : MonoBehaviour {
 			if (input.gamepads.Count == 0)
 				GUILayout.Label ("No gamepads connected");
 
+			KeyboardInputDevice keyboard = null;
+			var devices = MappedInput.inputDevices;
+			for (int i = 0; i < devices.Count; ++i) 
+			{
+				if (devices [i] is KeyboardInputDevice) 
+				{
+					keyboard = devices [i] as KeyboardInputDevice;
+					break;
+
+				}
+			}
+
+			if (keyboard != null) 
+			{
+				string str = "";
+				int[] buttonValues = (int[])System.Enum.GetValues (typeof(MappedButton));
+				for (int i = 0; i < buttonValues.Length; i++) {
+					str += (MappedButton)buttonValues [i] + ": " + keyboard.GetButton ((MappedButton)buttonValues [i]) + "\n";
+				}
+
+				int[] axisValues = (int[])System.Enum.GetValues (typeof(MappedAxis));
+				for (int i = 0; i < axisValues.Length; i++) {
+					str += (MappedAxis)axisValues [i] + ": " + keyboard.GetAxis ((MappedAxis)axisValues [i]) + "\n";
+				}
+				GUILayout.Label (str);
+			}
+
+
+		
+		
+
 			GUILayout.BeginHorizontal ();
 			foreach (GamepadDevice gamepad in input.gamepads) {
 				string str = "";
