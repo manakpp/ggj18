@@ -134,6 +134,9 @@ public class GameContext : MonoBehaviour
 			Mingle();
 		}
 
+		if (StateManager.gameState != (int)StateManager.GameState.IN_GAME)
+			return;
+
 		m_timeSinceLevelStarted += Time.deltaTime;
 		if (m_timeSinceLevelStarted >= Config.Scene.TimeLimit) 
 		{
@@ -144,6 +147,9 @@ public class GameContext : MonoBehaviour
 
 	private void MetronomeTick()
 	{
+		if (StateManager.gameState != (int)StateManager.GameState.IN_GAME)
+			return;
+		
 		Converse();
 	}
 
