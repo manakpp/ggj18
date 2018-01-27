@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour {
 	public GameObject planelGameOverGameObject;
 	public GameObject countdownTextGameObject;
 	public GameObject mainmenuAnimationsGameObject;
+	public GameObject levelGameObject;
 	
 
 	// Use this for initialization
@@ -41,6 +42,7 @@ public class UIManager : MonoBehaviour {
 			//move on screen player 2 animation
 			countdownTextGameObject.SetActive(false);
 			mainmenuAnimationsGameObject.SetActive(false);
+			levelGameObject.SetActive(true);
 			//add player 1 to scene
 			//add player 2 to scene
 		}
