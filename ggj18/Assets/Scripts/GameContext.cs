@@ -137,8 +137,9 @@ public class GameContext : MonoBehaviour
 		m_timeSinceLevelStarted += Time.deltaTime;
 		if (m_timeSinceLevelStarted >= Config.Scene.TimeLimit) 
 		{
-			// GameOver
-		}
+            // GameOver
+            StateManager.gameState = (int)StateManager.GameState.GAME_OVER;
+        }
 	}
 
 	private void MetronomeTick()
