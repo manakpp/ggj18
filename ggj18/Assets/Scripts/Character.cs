@@ -21,7 +21,7 @@ public class Character : MonoBehaviour
 	public float TalkingRadius { get{ return m_talkingRadius; } }
 	public int MissedMoveCount { get; set; }
 
-	private void Awake()
+	protected virtual void Awake()
 	{
 		GameConfig config = GameContext.Instance.Config;
 		m_hearingRadius = config.Character.HearingRadius;
@@ -36,9 +36,10 @@ public class Character : MonoBehaviour
 		GenerateRandomThoughts();
 	}
 
-	private void Start()
+	protected virtual void Start()
 	{
-		m_arrive.targetPosition = transform.position;
+		if(m_arrive != null)
+			m_arrive.targetPosition = transform.position;
 	}
 
 	private void OnDrawGizmos()
@@ -56,7 +57,7 @@ public class Character : MonoBehaviour
 		}
 	}
 
-	private void Update()
+	protected virtual void Update()
 	{
 		// TODO: Replace with sprite UI stuff
 		// Update UI
@@ -101,7 +102,7 @@ public class Character : MonoBehaviour
 		}
 	}
 
-	public void MoveToTargetPosition(Vector3 position)
+	public virtual void MoveToTargetPosition(Vector3 position)
 	{
 		m_arrive.targetPosition = position;
 	}

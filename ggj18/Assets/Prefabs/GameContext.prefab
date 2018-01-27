@@ -51,7 +51,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb1d8a1f2f8e436ca2a4fdf33fa1ea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_playerPrefab: {fileID: 114283374742028732, guid: e2d7bd228a643480eae06c6d87d6248d,
+    type: 2}
   m_characterPrefab: {fileID: 114167046941392560, guid: 5c7fc0eed613448d6bb79bc793f80267,
     type: 2}
   m_config: {fileID: 114904253869225444, guid: dc1399297be52465f94e0439aeacf562, type: 2}
-  m_inputManager: {fileID: 0}
+  m_inputManager: {fileID: 114020373937717274, guid: daffdedefe9c0436b8d9fe4304f92c11,
+    type: 2}

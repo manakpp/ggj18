@@ -8,6 +8,8 @@ public class GameConfig : MonoBehaviour
 	public class SceneConfig
 	{
 		public int NumCharacters = 20;
+		public float BoundsX = 20;
+		public float BoundsY = 15;
 	}
 
 	[System.Serializable]

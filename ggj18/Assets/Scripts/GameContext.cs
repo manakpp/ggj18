@@ -21,6 +21,9 @@ public class GameContext : MonoBehaviour
 	#endregion
 
 	[SerializeField]
+	private PlayerCharacterController m_playerPrefab;
+
+	[SerializeField]
 	private Character m_characterPrefab;
 
 	[SerializeField]
@@ -58,12 +61,30 @@ public class GameContext : MonoBehaviour
 			Character character = GameObject.Instantiate<Character>(m_characterPrefab);
 			m_characters.Add(character);
 
+			float x = Random.Range(-Config.Scene.BoundsX, Config.Scene.BoundsX);
+			float y = Random.Range(-Config.Scene.BoundsY, Config.Scene.BoundsY);
+			character.transform.position = new Vector3(x, y, 0.0f);
+
+			character.transform.SetParent(charParent.transform, false);
+		}
+
+		numCharacters = 2;
+		for(int i = 0; i < numCharacters; ++i)
+		{
+			PlayerCharacterController character = GameObject.Instantiate<PlayerCharacterController>(m_playerPrefab);
+			m_characters.Add(character);
+
 			float x = Random.Range(-5.0f, 5.0f);
 			float y = Random.Range(-5.0f, 5.0f);
 			character.transform.position = new Vector3(x, y, 0.0f);
 
 			character.transform.SetParent(charParent.transform, false);
 		}
+
+		m_inputManager = GameObject.Instantiate<InputManager> (m_inputManager);
+		m_inputManager.transform.SetParent (this.transform);
+
+
 	}
 
 	private void Start()
@@ -182,8 +203,8 @@ public class GameContext : MonoBehaviour
 		List<Vector3> groupPositions = new List<Vector3>();
 		for (int i = 0; i < groups; ++i) 
 		{
-			float x = Random.Range(-5.0f, 5.0f);
-			float y = Random.Range(-5.0f, 5.0f);
+			float x = Random.Range(-Config.Scene.BoundsX, Config.Scene.BoundsX);
+			float y = Random.Range(-Config.Scene.BoundsY, Config.Scene.BoundsY);
 			groupPositions.Add(new Vector3(x, y, y));
 		}
 

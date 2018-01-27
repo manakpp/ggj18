@@ -2,29 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCharacterController : MonoBehaviour 
+public class PlayerCharacterController : Character 
 {
-	private void Update()
+	private ShapeType m_shapeType = ShapeType.None;
+
+	protected override void Awake()
 	{
+		base.Awake ();
+	}
+
+	protected override void Update()
+	{
+		base.Update ();
+
 		GamepadDevice device = GameContext.Instance.InputManager.GetDevice(0);
 		if (device == null)
 			return;
 
 		if(device.GetButtonUp(GamepadButton.Action1))
 		{
-			// Change thought
+			m_shapeType = ShapeType.Cross;
+			PushShape (m_shapeType);
 		}
 		else if(device.GetButtonUp(GamepadButton.Action2))
 		{
-			// Change thought
+			m_shapeType = ShapeType.Circle;
+			PushShape (m_shapeType);
 		}
 		else if(device.GetButtonUp(GamepadButton.Action3))
 		{
-			// Change thought
+			m_shapeType = ShapeType.Square;
+			PushShape (m_shapeType);
 		}
 		else if(device.GetButtonUp(GamepadButton.Action4))
 		{
-			// Change thought
+			m_shapeType = ShapeType.Triangle;
+			PushShape (m_shapeType);
 		}
 
 		float moveX = device.GetAxis (GamepadAxis.LeftStickX);
@@ -51,5 +64,9 @@ public class PlayerCharacterController : MonoBehaviour
 			Rigidbody rb = GetComponent<Rigidbody>();
 			rb.velocity = Vector3.MoveTowards (rb.velocity, Vector3.zero, Time.deltaTime * deceleration);
 		}
+	}
+
+	public override void MoveToTargetPosition(Vector3 position)
+	{
 	}
 }
