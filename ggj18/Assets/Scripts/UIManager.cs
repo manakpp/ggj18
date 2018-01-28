@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour {
 	public GameObject panelClockGameObject;
     public GameObject player1Panel;
     public GameObject player2Panel;
+    public GameObject alienSounds;
 
 	private bool player1wins;
     public GameObject crossFaderObj;
@@ -120,16 +121,24 @@ public class UIManager : MonoBehaviour {
 		if (player1wins)
 		{
 			UIAnimatingPlayer1.SetActive(true);
-		} else
+            alienSounds.GetComponent<AudioSource>().panStereo = -0.7f;
+            alienSounds.GetComponent<AudioSource>().Play();
+            
+        } else
 		{
 			UIAnimatingPlayer2.SetActive(true);
-		}
+            alienSounds.GetComponent<AudioSource>().panStereo = 0.7f;
+            alienSounds.GetComponent<AudioSource>().Play();
+           
+        }
     }
 
 	public void GameOver()
 	{
 		StateManager.gameState = (int)StateManager.GameState.GAME_OVER;
 		gameOverStartTime = Time.time;
-		if (!isShowingEndScreen) displayEndScreen();
+        
+
+        if (!isShowingEndScreen) displayEndScreen();
 	}
 }
