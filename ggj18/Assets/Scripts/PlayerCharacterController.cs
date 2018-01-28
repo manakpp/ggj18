@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerCharacterController : Character 
 {
+	public Animator wifiA;
+	public Animator wifiB;
+
 	private List<ShapeType> m_assignedShapes = new List<ShapeType> ();
 	private int m_controllerIndex = 0;
 
@@ -42,6 +45,11 @@ public class PlayerCharacterController : Character
 
 		if(device.GetButtonUp(MappedButton.Button1))
 		{
+			if(wifiA != null && wifiA.isInitialized)
+				wifiA.SetTrigger("play");
+			if(wifiB != null && wifiB.isInitialized)
+				wifiB.SetTrigger("play");
+			
 			shapeCount1++;
 		}
 		else if(device.GetButtonUp(MappedButton.Button2))
