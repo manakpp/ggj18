@@ -32,6 +32,9 @@ public class GameContext : MonoBehaviour
 	[SerializeField]
 	private InputManager m_inputManager;
 
+	[SerializeField]
+	private ZOrderUpdater m_zOrderUpdater;
+
 	private Metronome m_metronome;
 
 	private List<Character> m_characters = new List<Character>();
@@ -60,8 +63,12 @@ public class GameContext : MonoBehaviour
 		}
 		s_context = this;
 
+		m_zOrderUpdater = GameObject.Instantiate<ZOrderUpdater>(m_zOrderUpdater);
+		m_zOrderUpdater.transform.SetParent (this.transform);
+
 		// Generate characters
 		GameObject charParent = new GameObject("Characters");
+		charParent.AddComponent<ZOrderUpdater>();
 
 		int numCharacters = Config.Scene.NumCharacters;
 		for(int i = 0; i < numCharacters; ++i)
@@ -74,6 +81,8 @@ public class GameContext : MonoBehaviour
 			character.transform.position = new Vector3(x, y, 0.0f);
 
 			character.transform.SetParent(charParent.transform, false);
+
+			m_zOrderUpdater.Objects.Add(character.transform);
 		}
 
 		List<ShapeType> randomShapes = new List<ShapeType> ();
@@ -103,6 +112,8 @@ public class GameContext : MonoBehaviour
 			randomShapes.RemoveAt (randIndex);
 
 			character.InitialisePlayer (i, randShapeA, randShapeB);
+
+			m_zOrderUpdater.Objects.Add(character.transform);
 		}
 			
 		m_inputManager = GameObject.Instantiate<InputManager> (m_inputManager);
