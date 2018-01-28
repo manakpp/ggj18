@@ -54,6 +54,11 @@ public class PlayerCharacterController : Character
 		}
 		else if(device.GetButtonUp(MappedButton.Button2))
 		{
+			if(wifiA != null && wifiA.isInitialized)
+				wifiA.SetTrigger("play");
+			if(wifiB != null && wifiB.isInitialized)
+				wifiB.SetTrigger("play");
+			
 			shapeCount2++;
 		}
 
