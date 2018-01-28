@@ -2804,11 +2804,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1591018693}
---- !u!1 &1643893518 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1027487320057666, guid: 4c90d253f11e6d145bd4945bc6848b3f,
-    type: 2}
-  m_PrefabInternal: {fileID: 1411842868}
 --- !u!1 &1767644103
 GameObject:
   m_ObjectHideFlags: 0
@@ -3159,7 +3154,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2105503485}
-  - component: {fileID: 2105503484}
   - component: {fileID: 2105503483}
   - component: {fileID: 2105503486}
   m_Layer: 0
@@ -3187,19 +3181,8 @@ MonoBehaviour:
   countdownTextGameObject: {fileID: 2082380638}
   mainmenuAnimationsGameObject: {fileID: 885575884}
   levelGameObject: {fileID: 350419835}
-  crossFaderObj: {fileID: 1643893518}
---- !u!114 &2105503484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2105503482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0868c1cfc7add9d4a9b317e455ddd2b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameState: 0
+  crossFaderObj: {fileID: 1027487320057666, guid: 4c90d253f11e6d145bd4945bc6848b3f,
+    type: 2}
 --- !u!4 &2105503485
 Transform:
   m_ObjectHideFlags: 0

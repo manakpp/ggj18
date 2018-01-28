@@ -17,6 +17,8 @@ public class UIManager : MonoBehaviour {
     public GameObject crossFaderObj;
     private CrossFader crossFader;
     private AudioSource audioSource;
+    private bool isShowingEndScreen = false;
+    private double gameOverStartTime = 0.0;
 
 	void Start () {
         crossFader = crossFaderObj.GetComponent<CrossFader>();
@@ -33,9 +35,19 @@ public class UIManager : MonoBehaviour {
         {
             StartCountdown();
         }
-        if(StateManager.gameState == (int)StateManager.GameState.GAME_OVER)
+        if(Input.GetKeyDown(KeyCode.G))
         {
-            //load next screen
+            StateManager.gameState = (int)StateManager.GameState.GAME_OVER;
+            gameOverStartTime = Time.time;
+            if (!isShowingEndScreen) displayEndScreen();
+        }
+
+        if(StateManager.gameState == (int)StateManager.GameState.GAME_OVER && Time.time > gameOverStartTime + 1.0)
+        {
+            if(Input.anyKeyDown)
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Chris");
+            }
         }
 	}
 
@@ -67,5 +79,14 @@ public class UIManager : MonoBehaviour {
         mainmenuAnimationsGameObject.SetActive(false);
         levelGameObject.SetActive(true);
         StateManager.gameState = (int)StateManager.GameState.IN_GAME;
+    }
+
+    void displayEndScreen()
+    {
+        isShowingEndScreen = true;
+        planelGameOverGameObject.SetActive(true);
+        levelGameObject.SetActive(false);
+        crossFader.CreateFade("Melody1", -40.0f, 2.0f);
+        crossFader.CreateFade("SFX", -40.0f, 2.0f);
     }
 }
