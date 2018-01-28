@@ -39,7 +39,8 @@ public class UIManager : MonoBehaviour {
         player2Panel.SetActive(false);
         
         StateManager.gameState = (int)StateManager.GameState.START_UI;
-	}
+        crossFader.CreateFade("Master", 0.0f, 0.001f);
+    }
 	
 	void Update () {
 		if(StateManager.gameState == (int)StateManager.GameState.START_UI &&
@@ -59,7 +60,8 @@ public class UIManager : MonoBehaviour {
         {
             if(Input.anyKeyDown)
             {
-                UnityEngine.SceneManagement.SceneManager.LoadScene("Olivier");
+                Invoke("loadScene", 0.5f);
+                crossFader.CreateFade("Master", -80.0f, 0.5f);
             }
         }
 
@@ -72,6 +74,8 @@ public class UIManager : MonoBehaviour {
             previousCount = (int)GameContext.Instance.TimeRemaining;
         }
 	}
+
+    private void loadScene() { UnityEngine.SceneManagement.SceneManager.LoadScene("Olivier"); }
 
 	public void StartCountdown() {
         countdownTextObject.SetActive(true);
