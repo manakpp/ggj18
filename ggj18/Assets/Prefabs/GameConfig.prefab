@@ -65,6 +65,6 @@ MonoBehaviour:
     ChanceToChangeIdea: 0.8
     ChanceToLeaveConversation: 0.3
     MaxCharactersMovingBetweenConversations: 10
-    PlayerMaxVelocity: 10
-    PlayerAcceleration: 10
-    PlayerDeceleration: 10
+    PlayerMaxVelocity: 12.5
+    PlayerAcceleration: 12.5
+    PlayerDeceleration: 15
