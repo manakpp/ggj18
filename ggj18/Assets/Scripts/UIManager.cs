@@ -118,6 +118,7 @@ public class UIManager : MonoBehaviour {
 
 	public void GameOver()
 	{
+		GameContext.Instance.HideCharacters ();
 		StateManager.gameState = (int)StateManager.GameState.GAME_OVER;
 		gameOverStartTime = Time.time;
 		if (!isShowingEndScreen) displayEndScreen();
