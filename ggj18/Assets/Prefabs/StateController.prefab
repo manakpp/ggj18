@@ -108,7 +108,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -134,10 +134,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   countdownFrom: 5
   countdownTextObject: {fileID: 0}
+  startButton: {fileID: 0}
   panelMainMenuGameObject: {fileID: 0}
   planelGameOverGameObject: {fileID: 0}
   countdownTextGameObject: {fileID: 0}
-  mainmenuAnimationsGameObject: {fileID: 0}
+  UIAnimatingPlayer1: {fileID: 0}
+  UIAnimatingPlayer2: {fileID: 0}
   levelGameObject: {fileID: 0}
-  crossFaderObj: {fileID: 1027487320057666, guid: 4c90d253f11e6d145bd4945bc6848b3f,
-    type: 2}
+  panelClockGameObject: {fileID: 0}
+  player1Panel: {fileID: 0}
+  player2Panel: {fileID: 0}
+  alienSounds: {fileID: 0}
+  pulseLighting: {fileID: 0}
+  player1wins: 0
+  crossFaderObj: {fileID: 0}
