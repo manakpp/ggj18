@@ -116,7 +116,7 @@ InputManager:
     invert: 0
     type: 2
     axis: 0
-    joyNum: 1
+    joyNum: 2
   - serializedVersion: 3
     m_Name: joystick 2 axis 2
     descriptiveName: 
