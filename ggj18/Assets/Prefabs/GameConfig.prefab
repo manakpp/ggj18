@@ -55,7 +55,7 @@ MonoBehaviour:
     NumCharacters: 35
     BoundsX: 14
     BoundsY: 6
-    TimeLimit: 60
+    TimeLimit: 30
     SecondsPerTick: 0.7
   Character:
     DrawCircles: 0
