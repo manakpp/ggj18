@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour {
     public GameObject player1Panel;
     public GameObject player2Panel;
     public GameObject alienSounds;
+    public GameObject pulseLighting;
 
 	public bool player1wins;
     public GameObject crossFaderObj;
@@ -116,6 +117,7 @@ public class UIManager : MonoBehaviour {
 		UIAnimatingPlayer2.SetActive(false);
 		panelClockGameObject.SetActive(true);
         levelGameObject.SetActive(true);
+        pulseLighting.SetActive(true);
         StateManager.gameState = (int)StateManager.GameState.IN_GAME;
     }
 
@@ -125,6 +127,7 @@ public class UIManager : MonoBehaviour {
         planelGameOverGameObject.SetActive(true);
         levelGameObject.SetActive(false);
 		panelClockGameObject.SetActive(false);
+        pulseLighting.SetActive(false);
 		crossFader.CreateFade("Melody1", -40.0f, 2.0f);
         crossFader.CreateFade("SFX", -40.0f, 2.0f);
 		if (player1wins)
