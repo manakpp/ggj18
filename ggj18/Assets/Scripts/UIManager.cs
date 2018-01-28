@@ -11,8 +11,11 @@ public class UIManager : MonoBehaviour {
 	public GameObject panelMainMenuGameObject;
 	public GameObject planelGameOverGameObject;
 	public GameObject countdownTextGameObject;
-	public GameObject mainmenuAnimationsGameObject;
+	public GameObject UIAnimatingPlayer1;
+	public GameObject UIAnimatingPlayer2;
 	public GameObject levelGameObject;
+	public GameObject panelClockGameObject;
+	private bool player1wins;
 
     public GameObject crossFaderObj;
     private CrossFader crossFader;
@@ -26,8 +29,9 @@ public class UIManager : MonoBehaviour {
         countdownText = countdownTextObject.GetComponent<Text>();
         countdownTextObject.SetActive(false);
         countdownTextGameObject.SetActive(false);
-        mainmenuAnimationsGameObject.SetActive(true);
-        StateManager.gameState = (int)StateManager.GameState.START_UI;
+		UIAnimatingPlayer1.SetActive(true);
+		UIAnimatingPlayer2.SetActive(true);
+		StateManager.gameState = (int)StateManager.GameState.START_UI;
 	}
 	
 	void Update () {
@@ -46,7 +50,7 @@ public class UIManager : MonoBehaviour {
         {
             if(Input.anyKeyDown)
             {
-                UnityEngine.SceneManagement.SceneManager.LoadScene("Chris");
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Olivier");
             }
         }
 	}
@@ -76,7 +80,9 @@ public class UIManager : MonoBehaviour {
     void startPlaying()
     {
         panelMainMenuGameObject.SetActive(false);
-        mainmenuAnimationsGameObject.SetActive(false);
+		UIAnimatingPlayer1.SetActive(false);
+		UIAnimatingPlayer2.SetActive(false);
+		panelClockGameObject.SetActive(true);
         levelGameObject.SetActive(true);
         StateManager.gameState = (int)StateManager.GameState.IN_GAME;
     }
@@ -86,7 +92,15 @@ public class UIManager : MonoBehaviour {
         isShowingEndScreen = true;
         planelGameOverGameObject.SetActive(true);
         levelGameObject.SetActive(false);
-        crossFader.CreateFade("Melody1", -40.0f, 2.0f);
+		panelClockGameObject.SetActive(false);
+		crossFader.CreateFade("Melody1", -40.0f, 2.0f);
         crossFader.CreateFade("SFX", -40.0f, 2.0f);
+		if (player1wins)
+		{
+			UIAnimatingPlayer1.SetActive(true);
+		} else
+		{
+			UIAnimatingPlayer2.SetActive(true);
+		}
     }
 }
