@@ -17,6 +17,7 @@ public class CrossFader : MonoBehaviour {
 		changingBools.Add("Melody1", false);
 		changingBools.Add("SFX", false);
 		changingBools.Add("Background1", false);
+        changingBools.Add("Master", false);
 
     }
 

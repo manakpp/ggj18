@@ -17,6 +17,8 @@ AudioMixerController:
   m_ExposedParameters:
   - guid: c65b4d2a4e30a4e45be4cae04d8e26e6
     name: Background1
+  - guid: 524966ec84bf1ca4fb0bed4bf348244d
+    name: Master
   - guid: 06286ac786881e148909be70caa0af0d
     name: Melody1
   - guid: 7feb197f95bc9ac4591a643f10d37de9

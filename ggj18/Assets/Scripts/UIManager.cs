@@ -8,7 +8,6 @@ public class UIManager : MonoBehaviour {
 	public int countdownFrom;
 	public GameObject countdownTextObject;
     private Text countdownText;
-	public GameObject startButton;
 	public GameObject panelMainMenuGameObject;
 	public GameObject planelGameOverGameObject;
 	public GameObject countdownTextGameObject;
@@ -27,7 +26,6 @@ public class UIManager : MonoBehaviour {
     private bool isShowingEndScreen = false;
     private double gameOverStartTime = 0.0;
     private int previousCount = 0;
-	private bool isCountingDown =false;
 
 	void Start () {
         crossFader = crossFaderObj.GetComponent<CrossFader>();
@@ -41,15 +39,13 @@ public class UIManager : MonoBehaviour {
         player2Panel.SetActive(false);
         
         StateManager.gameState = (int)StateManager.GameState.START_UI;
-	}
+        crossFader.CreateFade("Master", 0.0f, 0.001f);
+    }
 	
 	void Update () {
 		if(StateManager.gameState == (int)StateManager.GameState.START_UI &&
-			Input.GetKeyDown(KeyCode.Space) ||
-			GameContext.Instance.InputManager.GetStartButton () &&
-			!isCountingDown)
+			Input.GetKeyDown(KeyCode.Space) )
         {
-			isCountingDown = true;
             StartCountdown();
 			return;
         }
@@ -62,10 +58,10 @@ public class UIManager : MonoBehaviour {
 
         if(StateManager.gameState == (int)StateManager.GameState.GAME_OVER && Time.time > gameOverStartTime + 1.0)
         {
-            if(GameContext.Instance.InputManager.GetStartButton ())
+            if(Input.anyKeyDown)
             {
-                UnityEngine.SceneManagement.SceneManager.LoadScene("Olivier");
-				return;
+                Invoke("loadScene", 0.5f);
+                crossFader.CreateFade("Master", -80.0f, 0.5f);
             }
         }
 
@@ -79,11 +75,12 @@ public class UIManager : MonoBehaviour {
         }
 	}
 
+    private void loadScene() { UnityEngine.SceneManagement.SceneManager.LoadScene("Olivier"); }
+
 	public void StartCountdown() {
         countdownTextObject.SetActive(true);
         player1Panel.SetActive(true);
         player2Panel.SetActive(true);
-		startButton.SetActive (false);
         audioSource.Play();
 
 		float secsPerTick = GameContext.Instance.Config.Scene.SecondsPerTick;
