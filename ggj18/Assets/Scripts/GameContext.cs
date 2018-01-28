@@ -352,8 +352,26 @@ public class GameContext : MonoBehaviour
 
 	public float CalculateInfluenceRatio()
 	{
-		ShapeType a = m_playerCharacters [0].PrimaryShape;
-		ShapeType b = m_playerCharacters [1].PrimaryShape;
+//		ShapeType a = m_playerCharacters [0].PrimaryShape;
+//		ShapeType b = m_playerCharacters [1].PrimaryShape;
+//
+//		List<int> sumShapes = new List<int> ();
+//		for (int i = 0; i < (int)ShapeType.MAX; ++i) {
+//			sumShapes.Add (0);
+//		}
+//
+//		for (int i = 0; i < m_characters.Count; ++i) {
+//			sumShapes [(int)m_characters [i].Shapes [0]]++;
+//			sumShapes [(int)m_characters [i].Shapes [1]]++;
+//		}
+//
+//		int sum = sumShapes [(int)a] + sumShapes [(int)b];
+//		float playerRatio = (float)sumShapes [(int)a] / (float)sum;
+//
+//		return playerRatio;
+
+		var a = m_playerCharacters [0].Shapes;
+		var b = m_playerCharacters [1].Shapes;
 
 		List<int> sumShapes = new List<int> ();
 		for (int i = 0; i < (int)ShapeType.MAX; ++i) {
@@ -365,8 +383,12 @@ public class GameContext : MonoBehaviour
 			sumShapes [(int)m_characters [i].Shapes [1]]++;
 		}
 
-		int sum = sumShapes [(int)a] + sumShapes [(int)b];
-		float playerRatio = (float)sumShapes [(int)a] / (float)sum;
+		int sum = 
+			sumShapes [(int)a [0]] +
+			sumShapes [(int)a [1]] +
+			sumShapes [(int)b [0]] +
+			sumShapes [(int)b [1]];
+		float playerRatio = ((float)sumShapes [(int)a[0]] + (float)sumShapes [(int)a[1]]) / (float)sum;
 
 		return playerRatio;
 	}
