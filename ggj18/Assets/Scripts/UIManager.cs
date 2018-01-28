@@ -12,26 +12,24 @@ public class UIManager : MonoBehaviour {
 	public GameObject countdownTextGameObject;
 	public GameObject mainmenuAnimationsGameObject;
 	public GameObject levelGameObject;
-	
 
-	// Use this for initialization
+    public GameObject crossFaderObj;
+    private CrossFader crossFader;
+
 	void Start () {
-		Play() ;
+        crossFader = crossFaderObj.GetComponent<CrossFader>();
+        StateManager.gameState = (int)StateManager.GameState.START_UI;
 	}
 	
-	// Update is called once per frame
 	void Update () {
-
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            StartCountdown();
+        }
 	}
 
-	//display Player 1 UI
-	//display Player 2 UI
-	//assign concepts
-	//animate player 1
-	//animate player 2
 
-
-	void Play() { //Play
+	public void StartCountdown() { //Play
 		InvokeRepeating("Countdown", 1.0f, 1.0f);
 
 	}
@@ -49,12 +47,17 @@ public class UIManager : MonoBehaviour {
 
 	void Countdown() //Countdown until 0
 	{
+        if(countdownFrom == 1)
+        {
+            //fade in
+            crossFader.CreateFade("Melody1", 0.0f, 1.0f);
+            crossFader.CreateFade("SFX", -2.5f, 1.0f);
+        }
 		if (--countdownFrom == 0) {
 			Invoke("ClearMainMenu",1f);
 			CancelInvoke("Countdown");
-		}	
+            StateManager.gameState = (int)StateManager.GameState.IN_GAME;
+        }	
 		countdownText.text = countdownFrom.ToString();
 	} 
 }
-
-

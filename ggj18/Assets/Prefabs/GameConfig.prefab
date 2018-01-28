@@ -52,15 +52,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Scene:
-    NumCharacters: 20
-    BoundsX: 7.5
-    BoundsY: 5
+    NumCharacters: 35
+    BoundsX: 14
+    BoundsY: 6
     TimeLimit: 60
   Character:
     DrawCircles: 0
     TimeBetweenConversing: 1
     HearingRadius: 2.25
     TalkingRaidus: 2.5
+    ChanceToChangeIdea: 0.8
     ChanceToLeaveConversation: 0.3
     MaxCharactersMovingBetweenConversations: 10
     PlayerMaxVelocity: 10

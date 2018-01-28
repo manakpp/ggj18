@@ -21,6 +21,7 @@ public class GameConfig : MonoBehaviour
 		public float TimeBetweenConversing = 1.0f;
 		public float HearingRadius = 5.0f;
 		public float TalkingRaidus = 5.0f;
+		public float ChanceToChangeIdea = 0.25f;
 		public float ChanceToLeaveConversation = 0.3f;
 		public int MaxCharactersMovingBetweenConversations = 10;
 
