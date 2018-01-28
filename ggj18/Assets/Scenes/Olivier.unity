@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1033,6 +1033,11 @@ Prefab:
       propertyPath: alienSounds
       value: 
       objectReference: {fileID: 597756986}
+    - target: {fileID: 114921906268326138, guid: 4b87717dd1b2b2e47bdd7a48293e5358,
+        type: 2}
+      propertyPath: startButton
+      value: 
+      objectReference: {fileID: 1085635271}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4b87717dd1b2b2e47bdd7a48293e5358, type: 2}
   m_IsPrefabParent: 0
@@ -1766,6 +1771,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4750263772971034, guid: 7dd20410a02738e4c9bfcadab3df22ff,
     type: 2}
   m_PrefabInternal: {fileID: 1081293576}
+--- !u!1 &1085635271 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1525530395481552, guid: 400105bed5b8bb546b5419f3eff4b071,
+    type: 2}
+  m_PrefabInternal: {fileID: 1451103200}
 --- !u!1001 &1117172670
 Prefab:
   m_ObjectHideFlags: 0
@@ -2694,6 +2704,10 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1517379312149602, guid: dc10fcd7f826cc543a498a4ff9877e23, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc10fcd7f826cc543a498a4ff9877e23, type: 2}
