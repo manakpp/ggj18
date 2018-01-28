@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour {
 
 	public int countdownFrom;
-	public Text countdownText;
+	public GameObject countdownTextObject;
+    private Text countdownText;
 	public GameObject panelMainMenuGameObject;
 	public GameObject planelGameOverGameObject;
 	public GameObject countdownTextGameObject;
@@ -15,9 +16,15 @@ public class UIManager : MonoBehaviour {
 
     public GameObject crossFaderObj;
     private CrossFader crossFader;
+    private AudioSource audioSource;
 
 	void Start () {
         crossFader = crossFaderObj.GetComponent<CrossFader>();
+        audioSource = GetComponent<AudioSource>();
+        countdownText = countdownTextObject.GetComponent<Text>();
+        countdownTextObject.SetActive(false);
+        countdownTextGameObject.SetActive(false);
+        mainmenuAnimationsGameObject.SetActive(true);
         StateManager.gameState = (int)StateManager.GameState.START_UI;
 	}
 	
@@ -26,38 +33,39 @@ public class UIManager : MonoBehaviour {
         {
             StartCountdown();
         }
+        if(StateManager.gameState == (int)StateManager.GameState.GAME_OVER)
+        {
+            //load next screen
+        }
 	}
 
-
-	public void StartCountdown() { //Play
-		InvokeRepeating("Countdown", 1.0f, 1.0f);
-
+	public void StartCountdown() {
+        countdownTextObject.SetActive(true);
+        audioSource.Play();
+        InvokeRepeating("Countdown", 1.0f, 1.0f);
 	}
 
-	void ClearMainMenu()
+	void Countdown()
 	{
-			//move off screen player 1 animation
-			//move on screen player 2 animation
-			countdownTextGameObject.SetActive(false);
-			mainmenuAnimationsGameObject.SetActive(false);
-			levelGameObject.SetActive(true);
-			//add player 1 to scene
-			//add player 2 to scene
-		}
-
-	void Countdown() //Countdown until 0
-	{
-        if(countdownFrom == 1)
+        if (countdownFrom == 2)
         {
             //fade in
             crossFader.CreateFade("Melody1", 0.0f, 1.0f);
             crossFader.CreateFade("SFX", -2.5f, 1.0f);
         }
 		if (--countdownFrom == 0) {
-			Invoke("ClearMainMenu",1f);
-			CancelInvoke("Countdown");
-            StateManager.gameState = (int)StateManager.GameState.IN_GAME;
-        }	
-		countdownText.text = countdownFrom.ToString();
+            CancelInvoke("Countdown");
+            startPlaying();
+        }
+        else audioSource.Play();
+        countdownText.text = countdownFrom.ToString();
 	} 
+
+    void startPlaying()
+    {
+        panelMainMenuGameObject.SetActive(false);
+        mainmenuAnimationsGameObject.SetActive(false);
+        levelGameObject.SetActive(true);
+        StateManager.gameState = (int)StateManager.GameState.IN_GAME;
+    }
 }
