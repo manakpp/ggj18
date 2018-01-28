@@ -52,18 +52,14 @@ public class UIManager : MonoBehaviour {
             StartCountdown();
 			return;
         }
-		if(StateManager.gameState == (int)StateManager.GameState.IN_GAME)
+
+		#if UNITY_EDITOR
+		if(StateManager.gameState == (int)StateManager.GameState.IN_GAME &&
+			Input.GetKeyDown(KeyCode.G))
         {
 			GameOver ();
 			return;
         }
-
-		#if UNITY_EDITOR
-		if(Input.GetKeyDown(KeyCode.G))
-		{
-			GameOver ();
-			return;
-		}
 		#endif
 
         if(StateManager.gameState == (int)StateManager.GameState.GAME_OVER &&
