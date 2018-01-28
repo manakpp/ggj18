@@ -52,9 +52,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Scene:
-    NumCharacters: 20
-    BoundsX: 7.5
-    BoundsY: 5
+    NumCharacters: 35
+    BoundsX: 14
+    BoundsY: 6
     TimeLimit: 60
   Character:
     DrawCircles: 0

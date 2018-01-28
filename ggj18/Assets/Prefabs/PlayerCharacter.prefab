@@ -450,11 +450,13 @@ MonoBehaviour:
     ShapeSprite: {fileID: 21300000, guid: 9b88b197e70f67d47a5f269c7cd1a78f, type: 3}
   - Type: 8
     ShapeSprite: {fileID: 21300000, guid: 7b28fbed761905745bb440696089e996, type: 3}
-  FirstIdea: {fileID: 0}
-  SecondIdea: {fileID: 0}
+  FirstIdea: {fileID: 1870320295741610}
+  SecondIdea: {fileID: 1535830148391034}
   m_playerPrefabs:
   - {fileID: 1282940281285980}
   - {fileID: 1389828700781606}
+  shapeCount1: 0
+  shapeCount2: 0
 --- !u!135 &135584870891770696
 SphereCollider:
   m_ObjectHideFlags: 1

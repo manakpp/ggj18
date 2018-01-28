@@ -9,54 +9,46 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1727212281576712}
+  m_RootGameObject: {fileID: 1264174901532740}
   m_IsPrefabParent: 1
---- !u!1 &1727212281576712
+--- !u!1 &1264174901532740
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4658405417411968}
-  - component: {fileID: 114297406356989136}
+  - component: {fileID: 4831811918739734}
+  - component: {fileID: 114177329945420486}
   m_Layer: 0
-  m_Name: GameContext
+  m_Name: ZOrderUpdater
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4658405417411968
+--- !u!4 &4831811918739734
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1727212281576712}
+  m_GameObject: {fileID: 1264174901532740}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.1077752, y: 1.3181659, z: 0.021595675}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114297406356989136
+--- !u!114 &114177329945420486
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1727212281576712}
+  m_GameObject: {fileID: 1264174901532740}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbb1d8a1f2f8e436ca2a4fdf33fa1ea6, type: 3}
+  m_Script: {fileID: 11500000, guid: 7029d5c69d8404a1fa2387663575f4e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerPrefab: {fileID: 114283374742028732, guid: e2d7bd228a643480eae06c6d87d6248d,
-    type: 2}
-  m_characterPrefab: {fileID: 114167046941392560, guid: 5c7fc0eed613448d6bb79bc793f80267,
-    type: 2}
-  m_config: {fileID: 114904253869225444, guid: dc1399297be52465f94e0439aeacf562, type: 2}
-  m_inputManager: {fileID: 114020373937717274, guid: daffdedefe9c0436b8d9fe4304f92c11,
-    type: 2}
-  m_zOrderUpdater: {fileID: 114177329945420486, guid: dce3125ffe4d44588b193721f994709e,
-    type: 2}
+  Objects: []
