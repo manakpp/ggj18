@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -828,6 +828,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4495188232056888, guid: 2ee1eab199a3f0d44a6f0ea14b2b166a,
     type: 2}
   m_PrefabInternal: {fileID: 504579499}
+--- !u!1 &601566052 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1304722936838320, guid: 36a41efaa4477714fb363e2f91a5769d,
+    type: 2}
+  m_PrefabInternal: {fileID: 348417926}
 --- !u!1 &608498251 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1165103301376802, guid: c0d08c62021ca1d458dc406ea24b81a5,
@@ -1008,6 +1013,16 @@ Prefab:
       propertyPath: UIAnimatingPlayer2
       value: 
       objectReference: {fileID: 157667646}
+    - target: {fileID: 114921906268326138, guid: 4b87717dd1b2b2e47bdd7a48293e5358,
+        type: 2}
+      propertyPath: player1Panel
+      value: 
+      objectReference: {fileID: 601566052}
+    - target: {fileID: 114921906268326138, guid: 4b87717dd1b2b2e47bdd7a48293e5358,
+        type: 2}
+      propertyPath: player2Panel
+      value: 
+      objectReference: {fileID: 1202374959}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4b87717dd1b2b2e47bdd7a48293e5358, type: 2}
   m_IsPrefabParent: 0
@@ -1800,7 +1815,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1151481982}
-  - component: {fileID: 1151481981}
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
@@ -1808,18 +1822,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!65 &1151481981
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1151481980}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5.795169, y: 7.371827, z: 1}
-  m_Center: {x: -0.044419765, y: -1.2803226, z: 0}
 --- !u!4 &1151481982
 Transform:
   m_ObjectHideFlags: 0
@@ -1879,6 +1881,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4c90d253f11e6d145bd4945bc6848b3f, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1202374959 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1538171807462276, guid: 4adc664bab68c5a43ba7d466961e234e,
+    type: 2}
+  m_PrefabInternal: {fileID: 389486392}
 --- !u!1001 &1269846775
 Prefab:
   m_ObjectHideFlags: 0

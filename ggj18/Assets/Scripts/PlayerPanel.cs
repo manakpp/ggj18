@@ -21,9 +21,6 @@ public class PlayerPanel : MonoBehaviour
 
 	void Update ()
 	{
-		if (StateManager.gameState != (int)StateManager.GameState.IN_GAME)
-			return;
-		
 		if (!isInitialised)
 			Initialise ();
 		

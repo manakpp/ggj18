@@ -71,6 +71,8 @@ public class GameContext : MonoBehaviour
 
 		m_metronome = FindObjectOfType<Metronome> ();
 		m_metronome.TickEvent += MetronomeTick;
+
+		CreatePlayers ();
 	}
 
 	private void CreateWorld()
@@ -97,13 +99,23 @@ public class GameContext : MonoBehaviour
 			m_zOrderUpdater.Objects.Add(character.transform);
 		}
 
-		List<ShapeType> randomShapes = new List<ShapeType> ();
-		randomShapes.Add (ShapeType.Circle);
-		randomShapes.Add (ShapeType.Cross);
-		randomShapes.Add (ShapeType.Square);
-		randomShapes.Add (ShapeType.Triangle);
+		for(int i = 0; i < m_playerCharacters.Count; ++i)
+			m_playerCharacters[i].gameObject.SetActive (true);
+	}
 
-		numCharacters = 2;
+	public void CreatePlayers()
+	{
+		List<ShapeType> randomShapes = new List<ShapeType> ();
+		for (int i = 0; i < (int)ShapeType.MAX; ++i) {
+			ShapeType type = (ShapeType)i;
+			if (type != ShapeType.None && type != ShapeType.MAX) {
+				randomShapes.Add (type);
+			}
+		}
+
+		GameObject charParent = new GameObject("PCharacters");
+
+		int numCharacters = 2;
 		for(int i = 0; i < numCharacters; ++i)
 		{
 			PlayerCharacterController character = GameObject.Instantiate<PlayerCharacterController>(m_playerPrefab);
@@ -124,6 +136,8 @@ public class GameContext : MonoBehaviour
 			randomShapes.RemoveAt (randIndex);
 
 			character.InitialisePlayer (i, randShapeA, randShapeB);
+
+			character.gameObject.SetActive (false);
 
 			m_zOrderUpdater.Objects.Add(character.transform);
 		}
@@ -350,5 +364,10 @@ public class GameContext : MonoBehaviour
 		float playerRatio = (float)sumShapes [(int)a] / (float)sum;
 
 		return playerRatio;
+	}
+
+	public List<ShapeType> GetTopShapes()
+	{
+		return null;
 	}
 }
