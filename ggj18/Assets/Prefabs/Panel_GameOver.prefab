@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 224611773114075984}
   - component: {fileID: 222680878174226024}
   - component: {fileID: 114724912943418958}
+  - component: {fileID: 114058177606408298}
   m_Layer: 5
   m_Name: Panel_GameOver
   m_TagString: Untagged
@@ -182,6 +183,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &114058177606408298
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1517379312149602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 988952f6923314190ac909c84950a432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114103122879063834
 MonoBehaviour:
   m_ObjectHideFlags: 1

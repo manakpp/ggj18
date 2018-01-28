@@ -55,6 +55,7 @@ public class GameContext : MonoBehaviour
 	public float TimeLimit { get{ return m_config.Scene.TimeLimit; }}
 	public float TimeRemaining { get{ return Mathf.Max(0.0f, m_config.Scene.TimeLimit - m_timeSinceLevelStarted); }}
 	public float TimeRemainingRatio { get { return TimeRemaining / TimeLimit; }}
+	public List<PlayerCharacterController> Players{ get{ return m_playerCharacters; }}
 
 	private void Awake()
 	{
