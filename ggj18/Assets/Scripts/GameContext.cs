@@ -48,6 +48,8 @@ public class GameContext : MonoBehaviour
 
 	private float m_timeSinceLevelStarted = 0.0f;
 
+	private bool m_worldCreated = false;
+
 	public GameConfig Config {get{return m_config; }}
 	public InputManager InputManager {get{return m_inputManager; }}
 	public float TimeLimit { get{ return m_config.Scene.TimeLimit; }}
@@ -62,7 +64,16 @@ public class GameContext : MonoBehaviour
 			return;
 		}
 		s_context = this;
+			
+		m_inputManager = GameObject.Instantiate<InputManager> (m_inputManager);
+		m_inputManager.transform.SetParent (this.transform);
 
+		m_metronome = FindObjectOfType<Metronome> ();
+		m_metronome.TickEvent += MetronomeTick;
+	}
+
+	private void CreateWorld()
+	{
 		m_zOrderUpdater = GameObject.Instantiate<ZOrderUpdater>(m_zOrderUpdater);
 		m_zOrderUpdater.transform.SetParent (this.transform);
 
@@ -115,14 +126,6 @@ public class GameContext : MonoBehaviour
 
 			m_zOrderUpdater.Objects.Add(character.transform);
 		}
-			
-		m_inputManager = GameObject.Instantiate<InputManager> (m_inputManager);
-		m_inputManager.transform.SetParent (this.transform);
-
-		m_metronome = FindObjectOfType<Metronome> ();
-		m_metronome.TickEvent += MetronomeTick;
-
-
 	}
 
 	private void Start()
@@ -137,6 +140,16 @@ public class GameContext : MonoBehaviour
 
 	private void Update()
 	{
+		if (StateManager.gameState != (int)StateManager.GameState.IN_GAME)
+			return;
+
+		if (!m_worldCreated) 
+		{
+			CreateWorld ();
+			m_worldCreated = true;
+			return;
+		}
+
 		m_mingleTimeElapsed += Time.deltaTime;
 		if (m_mingleTimeElapsed >= m_timeBetweenMingling) 
 		{
@@ -144,9 +157,6 @@ public class GameContext : MonoBehaviour
 
 			Mingle();
 		}
-
-		if (StateManager.gameState != (int)StateManager.GameState.IN_GAME)
-			return;
 
 		m_timeSinceLevelStarted += Time.deltaTime;
 		if (m_timeSinceLevelStarted >= Config.Scene.TimeLimit) 
