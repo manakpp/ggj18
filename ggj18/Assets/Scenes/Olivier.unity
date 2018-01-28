@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1033,6 +1033,11 @@ Prefab:
       propertyPath: alienSounds
       value: 
       objectReference: {fileID: 597756986}
+    - target: {fileID: 114921906268326138, guid: 4b87717dd1b2b2e47bdd7a48293e5358,
+        type: 2}
+      propertyPath: startButton
+      value: 
+      objectReference: {fileID: 1085635271}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4b87717dd1b2b2e47bdd7a48293e5358, type: 2}
   m_IsPrefabParent: 0
@@ -1363,6 +1368,82 @@ Transform:
   m_PrefabParentObject: {fileID: 4850958111069468, guid: 0ab15e96329f98b41bad396065c0dbf5,
     type: 2}
   m_PrefabInternal: {fileID: 909830842}
+--- !u!1 &930906193
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 930906194}
+  - component: {fileID: 930906196}
+  - component: {fileID: 930906195}
+  m_Layer: 5
+  m_Name: Text_Title
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &930906194
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 930906193}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1026353861}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -50}
+  m_SizeDelta: {x: 600, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &930906195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 930906193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.8901961, g: 1, b: 0.3882353, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 3353777f781ba497093261ab38a3d9c0, type: 3}
+    m_FontSize: 45
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 45
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'HEARD IT THROUGH
+
+    THE SPACE TIME'
+--- !u!222 &930906196
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 930906193}
 --- !u!1001 &934648399
 Prefab:
   m_ObjectHideFlags: 0
@@ -1766,6 +1847,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4750263772971034, guid: 7dd20410a02738e4c9bfcadab3df22ff,
     type: 2}
   m_PrefabInternal: {fileID: 1081293576}
+--- !u!1 &1085635271 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1525530395481552, guid: 400105bed5b8bb546b5419f3eff4b071,
+    type: 2}
+  m_PrefabInternal: {fileID: 1451103200}
 --- !u!1001 &1117172670
 Prefab:
   m_ObjectHideFlags: 0
@@ -2694,6 +2780,10 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1517379312149602, guid: dc10fcd7f826cc543a498a4ff9877e23, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc10fcd7f826cc543a498a4ff9877e23, type: 2}

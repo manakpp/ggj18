@@ -49,4 +49,19 @@ public class InputManager : MonoBehaviour
 
 		return null;
 	}
+
+	public bool GetStartButton()
+	{
+		var devices = m_gamepadInput.gamepads;
+		for (int i = 0; i < devices.Count; ++i) 
+		{
+			if (devices [i] != null) {
+				if (devices [i].GetButton (GamepadButton.Start))
+					return true;
+			}
+		} 
+
+		return UnityEngine.Input.GetKeyUp(KeyCode.KeypadEnter) || 
+			UnityEngine.Input.GetKeyUp(KeyCode.Space);
+	}
 }

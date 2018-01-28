@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour {
 	public int countdownFrom;
 	public GameObject countdownTextObject;
     private Text countdownText;
+	public GameObject startButton;
 	public GameObject panelMainMenuGameObject;
 	public GameObject planelGameOverGameObject;
 	public GameObject countdownTextGameObject;
@@ -26,7 +27,7 @@ public class UIManager : MonoBehaviour {
     private bool isShowingEndScreen = false;
     private double gameOverStartTime = 0.0;
     private int previousCount = 0;
-
+	bool countdownStarted;
 	void Start () {
         crossFader = crossFaderObj.GetComponent<CrossFader>();
         audioSource = GetComponent<AudioSource>();
@@ -44,7 +45,8 @@ public class UIManager : MonoBehaviour {
 	
 	void Update () {
 		if(StateManager.gameState == (int)StateManager.GameState.START_UI &&
-			Input.GetKeyDown(KeyCode.Space) )
+			GameContext.Instance.InputManager.GetStartButton() &&
+			!countdownStarted)
         {
             StartCountdown();
 			return;
@@ -56,9 +58,10 @@ public class UIManager : MonoBehaviour {
 			return;
         }
 
-        if(StateManager.gameState == (int)StateManager.GameState.GAME_OVER && Time.time > gameOverStartTime + 1.0)
+        if(StateManager.gameState == (int)StateManager.GameState.GAME_OVER &&
+			Time.time > gameOverStartTime + 1.0)
         {
-            if(Input.anyKeyDown)
+			if(GameContext.Instance.InputManager.GetStartButton())
             {
                 Invoke("loadScene", 0.5f);
                 crossFader.CreateFade("Master", -80.0f, 0.5f);
@@ -78,9 +81,11 @@ public class UIManager : MonoBehaviour {
     private void loadScene() { UnityEngine.SceneManagement.SceneManager.LoadScene("Olivier"); }
 
 	public void StartCountdown() {
+		countdownStarted = true;
         countdownTextObject.SetActive(true);
         player1Panel.SetActive(true);
         player2Panel.SetActive(true);
+		startButton.SetActive (false);
         audioSource.Play();
 
 		float secsPerTick = GameContext.Instance.Config.Scene.SecondsPerTick;
