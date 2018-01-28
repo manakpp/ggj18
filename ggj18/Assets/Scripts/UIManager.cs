@@ -67,8 +67,9 @@ public class UIManager : MonoBehaviour {
         {
 			if(GameContext.Instance.InputManager.GetStartButton())
             {
-                Invoke("loadScene", 0.5f);
-                crossFader.CreateFade("Master", -80.0f, 0.5f);
+                loadScene();
+                //Invoke("loadScene", 0.5f);
+                //crossFader.CreateFade("Master", -80.0f, 0.5f);
             }
         }
 
