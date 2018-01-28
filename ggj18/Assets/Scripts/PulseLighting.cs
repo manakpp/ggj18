@@ -36,14 +36,14 @@ public class PulseLighting : MonoBehaviour {
         if (m_lightsOn)
         {
             Color c = m_image.color;
-            c.a = Mathf.Lerp(0, m_maxAlpha, t);
+            c.a = m_maxAlpha; // Mathf.Lerp(0, m_maxAlpha, t);
             m_image.color = c;
 
-            if (c.a > m_maxAlpha - 0.01f)
-            {
+            //if (c.a > m_maxAlpha - 0.01f)
+            //{
                 m_lightsOn = false;
                 t = 0;
-            }
+            //}
         }
         else if (m_image.color.a > 0.01f)
         {
