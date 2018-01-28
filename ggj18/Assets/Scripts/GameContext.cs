@@ -56,6 +56,7 @@ public class GameContext : MonoBehaviour
 	public float TimeRemaining { get{ return Mathf.Max(0.0f, m_config.Scene.TimeLimit - m_timeSinceLevelStarted); }}
 	public float TimeRemainingRatio { get { return TimeRemaining / TimeLimit; }}
 	public List<PlayerCharacterController> Players{ get{ return m_playerCharacters; }}
+	public List<Character> Characters{ get{ return m_characters; }}
 
 	private void Awake()
 	{
@@ -173,13 +174,20 @@ public class GameContext : MonoBehaviour
 		m_timeSinceLevelStarted += Time.deltaTime;
 		if (m_timeSinceLevelStarted >= Config.Scene.TimeLimit) 
 		{
+
+
             // GameOver
 			FindObjectOfType<UIManager>().GameOver();
 
-			for (int i = 0; i < m_characters.Count; ++i) {
-				m_characters [i].gameObject.SetActive (false);
-			}
+
         }
+	}
+
+	public void HideCharacters()
+	{
+		for (int i = 0; i < m_characters.Count; ++i) {
+			m_characters [i].gameObject.SetActive (false);
+		}
 	}
 
 	private void MetronomeTick()
@@ -363,8 +371,4 @@ public class GameContext : MonoBehaviour
 		return playerRatio;
 	}
 
-	public List<ShapeType> GetTopShapes()
-	{
-		return null;
-	}
 }
