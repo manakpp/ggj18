@@ -95,8 +95,6 @@ public class GameContext : MonoBehaviour
 			character.transform.position = new Vector3(x, y, 0.0f);
 
 			character.transform.SetParent(charParent.transform, false);
-
-			m_zOrderUpdater.Objects.Add(character.transform);
 		}
 
 		for(int i = 0; i < m_playerCharacters.Count; ++i)
@@ -139,7 +137,6 @@ public class GameContext : MonoBehaviour
 
 			character.gameObject.SetActive (false);
 
-			m_zOrderUpdater.Objects.Add(character.transform);
 		}
 	}
 
