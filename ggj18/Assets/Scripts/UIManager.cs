@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour {
     public GameObject player2Panel;
     public GameObject alienSounds;
 
-	private bool player1wins;
+	public bool player1wins;
     public GameObject crossFaderObj;
     private CrossFader crossFader;
     private AudioSource audioSource;
@@ -136,6 +136,7 @@ public class UIManager : MonoBehaviour {
 	public void GameOver()
 	{
 		GameContext.Instance.HideCharacters ();
+		player1wins = GameContext.Instance.CalculateInfluenceRatio () >= 0.5f;
 		StateManager.gameState = (int)StateManager.GameState.GAME_OVER;
 		gameOverStartTime = Time.time;
         

@@ -62,8 +62,7 @@ public class GameOverPanel : MonoBehaviour
 
 			shapeCounts [(int)shape] = 0; // so it wont be selected again
 		}
-
-		UnityEngine.Debug.LogError (shape);
+			
 		return shape;
 	}
 }
