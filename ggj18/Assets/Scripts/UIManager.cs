@@ -15,8 +15,10 @@ public class UIManager : MonoBehaviour {
 	public GameObject UIAnimatingPlayer2;
 	public GameObject levelGameObject;
 	public GameObject panelClockGameObject;
-	private bool player1wins;
+    public GameObject player1Panel;
+    public GameObject player2Panel;
 
+	private bool player1wins;
     public GameObject crossFaderObj;
     private CrossFader crossFader;
     private AudioSource audioSource;
@@ -31,7 +33,10 @@ public class UIManager : MonoBehaviour {
         countdownTextGameObject.SetActive(false);
 		UIAnimatingPlayer1.SetActive(true);
 		UIAnimatingPlayer2.SetActive(true);
-		StateManager.gameState = (int)StateManager.GameState.START_UI;
+        player1Panel.SetActive(false);
+        player2Panel.SetActive(false);
+
+        StateManager.gameState = (int)StateManager.GameState.START_UI;
 	}
 	
 	void Update () {
@@ -59,6 +64,8 @@ public class UIManager : MonoBehaviour {
 
 	public void StartCountdown() {
         countdownTextObject.SetActive(true);
+        player1Panel.SetActive(true);
+        player2Panel.SetActive(true);
         audioSource.Play();
 
 		float secsPerTick = GameContext.Instance.Config.Scene.SecondsPerTick;
