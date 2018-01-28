@@ -24,6 +24,7 @@ public class UIManager : MonoBehaviour {
     private AudioSource audioSource;
     private bool isShowingEndScreen = false;
     private double gameOverStartTime = 0.0;
+    private int previousCount = 0;
 
 	void Start () {
         crossFader = crossFaderObj.GetComponent<CrossFader>();
@@ -35,7 +36,7 @@ public class UIManager : MonoBehaviour {
 		UIAnimatingPlayer2.SetActive(true);
         player1Panel.SetActive(false);
         player2Panel.SetActive(false);
-
+        
         StateManager.gameState = (int)StateManager.GameState.START_UI;
 	}
 	
@@ -59,6 +60,15 @@ public class UIManager : MonoBehaviour {
             {
                 UnityEngine.SceneManagement.SceneManager.LoadScene("Olivier");
             }
+        }
+
+        if(GameContext.Instance.TimeRemaining < 5)
+        {
+            if(previousCount != (int)GameContext.Instance.TimeRemaining)
+            {
+                audioSource.Play();
+            }
+            previousCount = (int)GameContext.Instance.TimeRemaining;
         }
 	}
 
