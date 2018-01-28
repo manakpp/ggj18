@@ -97,38 +97,37 @@ public class Character : MonoBehaviour
 			SecondIdea.GetComponent<SpriteRenderer>().sprite = m_shapeSpriteDict[m_shapes[1]];
 		}
 
-		switch (shape) 
-		{
-		case ShapeType.Square:
-			GetComponentInChildren<SpriteRenderer> ().material.color = new Color (0.75f, 0.40f, 0.40f);
-			break;
-		case ShapeType.Triangle:
-			GetComponentInChildren<SpriteRenderer> ().material.color = Color.green;
-			break;
-		case ShapeType.Cross:
-			GetComponentInChildren<SpriteRenderer> ().material.color = Color.blue;
-			break;
-		case ShapeType.Circle:
-			GetComponentInChildren<SpriteRenderer> ().material.color = Color.red;
-			break;
-		case ShapeType.Square1:
-			GetComponentInChildren<SpriteRenderer> ().material.color = new Color (0.75f, 0.40f, 0.40f) * .5f;
-			break;
-		case ShapeType.Triangle1:
-			GetComponentInChildren<SpriteRenderer> ().material.color = Color.green * .5f;
-			break;
-		case ShapeType.Cross1:
-			GetComponentInChildren<SpriteRenderer> ().material.color = Color.blue * .5f;
-			break;
-		case ShapeType.Circle1:
-			GetComponentInChildren<SpriteRenderer> ().material.color = Color.red * .5f;
-			break;
-
-		case ShapeType.None: // Fall
-		case ShapeType.MAX: // Fall
-		default:
-			break;
-		}
+//		switch (shape) 
+//		{
+//		case ShapeType.Square:
+//			GetComponentInChildren<SpriteRenderer> ().material.color = new Color (0.75f, 0.40f, 0.40f);
+//			break;
+//		case ShapeType.Triangle:
+//			GetComponentInChildren<SpriteRenderer> ().material.color = Color.green;
+//			break;
+//		case ShapeType.Cross:
+//			GetComponentInChildren<SpriteRenderer> ().material.color = Color.blue;
+//			break;
+//		case ShapeType.Circle:
+//			GetComponentInChildren<SpriteRenderer> ().material.color = Color.red;
+//			break;
+//		case ShapeType.Square1:
+//			GetComponentInChildren<SpriteRenderer> ().material.color = new Color (0.75f, 0.40f, 0.40f) * .5f;
+//			break;
+//		case ShapeType.Triangle1:
+//			GetComponentInChildren<SpriteRenderer> ().material.color = Color.green * .5f;
+//			break;
+//		case ShapeType.Cross1:
+//			GetComponentInChildren<SpriteRenderer> ().material.color = Color.blue * .5f;
+//			break;
+//		case ShapeType.Circle1:
+//			GetComponentInChildren<SpriteRenderer> ().material.color = Color.red * .5f;
+//			break;
+//
+//		case ShapeType.None: // Fall
+//		case ShapeType.MAX: // Fall
+//		default:
+//	//	}
 	}
 
 	public void GenerateRandomThoughts()

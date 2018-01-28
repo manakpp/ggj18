@@ -163,7 +163,11 @@ public class GameContext : MonoBehaviour
 		if (m_timeSinceLevelStarted >= Config.Scene.TimeLimit) 
 		{
             // GameOver
-            StateManager.gameState = (int)StateManager.GameState.GAME_OVER;
+			FindObjectOfType<UIManager>().GameOver();
+
+			for (int i = 0; i < m_characters.Count; ++i) {
+				m_characters [i].gameObject.SetActive (false);
+			}
         }
 	}
 

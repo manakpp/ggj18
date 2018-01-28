@@ -35,15 +35,17 @@ public class UIManager : MonoBehaviour {
 	}
 	
 	void Update () {
-        if(Input.GetKeyDown(KeyCode.Space))
+		if(StateManager.gameState == (int)StateManager.GameState.START_UI &&
+			Input.GetKeyDown(KeyCode.Space) )
         {
             StartCountdown();
+			return;
         }
-        if(Input.GetKeyDown(KeyCode.G))
+		if(StateManager.gameState == (int)StateManager.GameState.IN_GAME &&
+			Input.GetKeyDown(KeyCode.G))
         {
-            StateManager.gameState = (int)StateManager.GameState.GAME_OVER;
-            gameOverStartTime = Time.time;
-            if (!isShowingEndScreen) displayEndScreen();
+			GameOver ();
+			return;
         }
 
         if(StateManager.gameState == (int)StateManager.GameState.GAME_OVER && Time.time > gameOverStartTime + 1.0)
@@ -58,7 +60,9 @@ public class UIManager : MonoBehaviour {
 	public void StartCountdown() {
         countdownTextObject.SetActive(true);
         audioSource.Play();
-        InvokeRepeating("Countdown", 1.0f, 1.0f);
+
+		float secsPerTick = GameContext.Instance.Config.Scene.SecondsPerTick;
+		InvokeRepeating("Countdown", secsPerTick, secsPerTick);
 	}
 
 	void Countdown()
@@ -66,8 +70,9 @@ public class UIManager : MonoBehaviour {
         if (countdownFrom == 2)
         {
             //fade in
-            crossFader.CreateFade("Melody1", 0.0f, 1.0f);
-            crossFader.CreateFade("SFX", -2.5f, 1.0f);
+			float secsPerTick = GameContext.Instance.Config.Scene.SecondsPerTick;
+			crossFader.CreateFade("Melody1", 0.0f, secsPerTick);
+			crossFader.CreateFade("SFX", -2.5f, secsPerTick);
         }
 		if (--countdownFrom == 0) {
             CancelInvoke("Countdown");
@@ -103,4 +108,11 @@ public class UIManager : MonoBehaviour {
 			UIAnimatingPlayer2.SetActive(true);
 		}
     }
+
+	public void GameOver()
+	{
+		StateManager.gameState = (int)StateManager.GameState.GAME_OVER;
+		gameOverStartTime = Time.time;
+		if (!isShowingEndScreen) displayEndScreen();
+	}
 }

@@ -12,6 +12,7 @@ public class GameConfig : MonoBehaviour
 		public float BoundsY = 15;
 
 		public int TimeLimit = 60;
+		public float SecondsPerTick = 1.0f;
 	}
 
 	[System.Serializable]
