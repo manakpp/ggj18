@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour {
 	public int countdownFrom;
 	public GameObject countdownTextObject;
     private Text countdownText;
+	public GameObject startButton;
 	public GameObject panelMainMenuGameObject;
 	public GameObject planelGameOverGameObject;
 	public GameObject countdownTextGameObject;
@@ -81,6 +82,7 @@ public class UIManager : MonoBehaviour {
         countdownTextObject.SetActive(true);
         player1Panel.SetActive(true);
         player2Panel.SetActive(true);
+		startButton.SetActive (false);
         audioSource.Play();
 
 		float secsPerTick = GameContext.Instance.Config.Scene.SecondsPerTick;
