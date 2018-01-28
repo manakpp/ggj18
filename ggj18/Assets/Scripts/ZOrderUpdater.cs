@@ -4,37 +4,29 @@ using UnityEngine;
 
 public class ZOrderUpdater : MonoBehaviour {
 
-	public List<Transform> Objects = new List<Transform>();
-
 	void Update()
-	{
-		
-		Objects.Sort(delegate(Transform x, Transform y)
+	{		
+        GameObject[] objBases = GameObject.FindGameObjectsWithTag("ObjBasePos"); // Todo: put in reload function if there are performance issues.
+
+        List<GameObject> m_objBasePos = new List<GameObject>(objBases.Length);
+        m_objBasePos.AddRange(objBases);
+
+        if (m_objBasePos == null)
+            return;
+
+        m_objBasePos.Sort(delegate(GameObject a, GameObject b)
 		{
-				return y.position.y.CompareTo(x.position.y);
+            return b.transform.position.y.CompareTo(a.transform.position.y);
+		});
 
-				/*
-				if (x.position.y > y.position.y)
-					return x;
-				else
-					return y;
-				*/
-		});	
-
-		//float z = 0;
-		for (int i = 0; i < Objects.Count; ++i)
+        for (int i = 0; i < m_objBasePos.Count; ++i)
 		{
-			//o.position = new Vector3(o.position.x, o.position.y, z);
-			//z -= 0.01;
-
-			SpriteRenderer[] spriteRenderers = Objects[i].GetComponentsInChildren<SpriteRenderer>();
+            SpriteRenderer[] spriteRenderers = m_objBasePos[i].transform.parent.GetComponentsInChildren<SpriteRenderer>();
 
 			foreach (var sr in spriteRenderers)
 			{
 				sr.sortingOrder = i;
 			}
-
-			//Objects[i].GetComponent<SpriteRenderer>().sortingOrder = i;
 		}
 	}
 }

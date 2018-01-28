@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour {
 	public GameObject panelClockGameObject;
     public GameObject player1Panel;
     public GameObject player2Panel;
+    public GameObject alienSounds;
 
 	private bool player1wins;
     public GameObject crossFaderObj;
@@ -24,6 +25,7 @@ public class UIManager : MonoBehaviour {
     private AudioSource audioSource;
     private bool isShowingEndScreen = false;
     private double gameOverStartTime = 0.0;
+    private int previousCount = 0;
 
 	void Start () {
         crossFader = crossFaderObj.GetComponent<CrossFader>();
@@ -35,7 +37,7 @@ public class UIManager : MonoBehaviour {
 		UIAnimatingPlayer2.SetActive(true);
         player1Panel.SetActive(false);
         player2Panel.SetActive(false);
-
+        
         StateManager.gameState = (int)StateManager.GameState.START_UI;
 	}
 	
@@ -59,6 +61,15 @@ public class UIManager : MonoBehaviour {
             {
                 UnityEngine.SceneManagement.SceneManager.LoadScene("Olivier");
             }
+        }
+
+        if(GameContext.Instance.TimeRemaining < 5)
+        {
+            if(previousCount != (int)GameContext.Instance.TimeRemaining)
+            {
+                audioSource.Play();
+            }
+            previousCount = (int)GameContext.Instance.TimeRemaining;
         }
 	}
 
@@ -110,10 +121,16 @@ public class UIManager : MonoBehaviour {
 		if (player1wins)
 		{
 			UIAnimatingPlayer1.SetActive(true);
-		} else
+            alienSounds.GetComponent<AudioSource>().panStereo = -0.7f;
+            alienSounds.GetComponent<AudioSource>().Play();
+            
+        } else
 		{
 			UIAnimatingPlayer2.SetActive(true);
-		}
+            alienSounds.GetComponent<AudioSource>().panStereo = 0.7f;
+            alienSounds.GetComponent<AudioSource>().Play();
+           
+        }
     }
 
 	public void GameOver()
@@ -121,6 +138,8 @@ public class UIManager : MonoBehaviour {
 		GameContext.Instance.HideCharacters ();
 		StateManager.gameState = (int)StateManager.GameState.GAME_OVER;
 		gameOverStartTime = Time.time;
-		if (!isShowingEndScreen) displayEndScreen();
+        
+
+        if (!isShowingEndScreen) displayEndScreen();
 	}
 }
