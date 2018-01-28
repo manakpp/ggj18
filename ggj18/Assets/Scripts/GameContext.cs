@@ -203,8 +203,8 @@ public class GameContext : MonoBehaviour
 
 		for (int i = 0; i < m_playerCharacters.Count; ++i) 
 		{
-			m_playerCharacters [i].shapeCount1 = 0;
-			m_playerCharacters [i].shapeCount2 = 0;
+			m_playerCharacters [i].shapeCount1 = 1;
+			m_playerCharacters [i].shapeCount2 = 1;
 		}
 	}
 
